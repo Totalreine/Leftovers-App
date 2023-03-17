@@ -12,7 +12,7 @@ export default function RecipesProvider(props) {
   const [recipes, setRecipes] = useState([]);
   
   function addRecipes(params) {
-    axios.get(`/recipes`, params)
+    return axios.get(`/recipes`, { params } )
     .then((all) => {
       setRecipes(prev => all.data);
     });    

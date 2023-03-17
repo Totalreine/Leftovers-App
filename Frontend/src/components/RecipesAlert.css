@@ -1,0 +1,14 @@
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7vh;
+  padding-bottom: 7vh;
+}
+
+.alertRow {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}

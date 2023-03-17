@@ -1,8 +1,6 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const Recipe = require("../models/recipes");
-const Ingredient = require("../models/ingredients");
 
 const spoonacularApi = require("./helpers/spoonacularAPI");
 

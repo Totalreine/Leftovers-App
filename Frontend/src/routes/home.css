@@ -23,12 +23,12 @@ main {
 .carousel {
   display: flex;
   background-color: #ffff;
-  margin-bottom: 3vh;
   padding-top: 3vh;
   padding-bottom: 3vh;
 }
 
-content {
+.content {
   display: flex;
   flex-direction: column;
+  /* flex-grow: 1; */
 }
