@@ -74,7 +74,7 @@ router.post("/recipe", async (req, res) => {
       cuisine,
     });
 
-    await recipe.addNutrient(nutrients);
+    // await recipe.addNutrient(nutrients);
     await recipe.addIngredient(ingredients);
     await user.addRecipe(recipe);
     res.json("done");

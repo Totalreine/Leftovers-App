@@ -11,12 +11,12 @@ function SignUpForm() {
   const [passwordReg, setPasswordReg] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
-  const register = () => {
-    axios.post('/', {
+  const register = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:8080/signup', {
       email: {emailReg},
       name: {name},
-      password: {passwordReg},
-      confirmPass: {confirmPass},
+      password: {passwordReg}
     })
     .then(function (response) {
       console.log(response);
