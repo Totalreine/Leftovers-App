@@ -1,7 +1,6 @@
-import { Component } from "react";
-import ReactDOM from 'react-dom';
 
+import BasicExample from './FormComp';
 function Login() {
-    return <div> <h2>Login</h2> </div> ;
+    return <div className='form'> <BasicExample/> </div> ;
 }
 export default Login;
