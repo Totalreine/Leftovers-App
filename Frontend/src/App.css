@@ -12,14 +12,61 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.form {
+
+.form-container{
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
-  margin: 90px 175px;
+  width:100%;
+  height: 100vh;
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("/public/food-welcome-splash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+.form-card, .message-container{
+  width: 50%;
+  height: 100%;
+}
+.message-container{
+  display: flex;
+  justify-content: center;
+
+}
+
+.message {
+  width: 45%;
+  text-align: center;
+  margin-top: 25%;
+  font-size: 35px;
+  color: white;
+}
+.form-card{
+  border-style:linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)) ;
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));
+}
+
+
+.form{
+  margin: 132px;
+}
+
+.lglabel, .btn-div{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary{
+  background-color: #F29544;
+  border-color:#F29544;
+  
+}
+
 .App-link {
   color: #61dafb;
 }
 .nav-color{
   background-color: #9E9BF2;
 }
+

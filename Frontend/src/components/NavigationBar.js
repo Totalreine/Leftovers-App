@@ -6,7 +6,11 @@ function ContainerOutsideExample() {
     <Container>
       <Navbar expand="lg" variant="light" className="nav-color" fixed="top">
         <Container>
-          <Navbar.Brand href="#">LeftOvers</Navbar.Brand>
+          <Navbar.Brand href="#" bsStyle="default" style={{ color: "white" }}>
+            <div className='logo-div'>
+              <img src='./logo.png' alt="bug" height={25} />
+            </div>
+          </Navbar.Brand>
         </Container>
       </Navbar>
     </Container>
