@@ -55,7 +55,7 @@
   margin: 132px;
 }
 
-.lglabel, .btn-div{
+.form-label, .btn-div{
   display: flex;
   justify-content: center;
 }
@@ -75,12 +75,12 @@
   background-color: #9E9BF2;
 }
 
-.signup{
+.link-div{
   display: flex;
   justify-content: center;
   padding-top: 2em;
 }
-.signup-link{
+.link{
   color: red; 
   text-decoration: none;
 }
