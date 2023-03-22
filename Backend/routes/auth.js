@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const User = require("../models/users");
+const Nutrient = require("../models/nutrients");
+const Recipe = require("../models/recipes");
+const Ingredient = require("../models/ingredients");
 
 router.get("/signup", (req, res) => {});
 
