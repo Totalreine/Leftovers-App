@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -23,6 +23,9 @@ function BasicExample() {
       <Button variant="primary" style={{backgroundColor: '#F29544', borderColor:'#F29544', padding: '10px 166px' }} type="submit">
         Login
       </Button>
+      </div>
+      <div className="signup">
+      <Link to="/signup" className="signup-link">Don’t have an account yet? Sign Up</Link>
       </div>
     </Form>
   );

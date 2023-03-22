@@ -75,3 +75,16 @@
   background-color: #9E9BF2;
 }
 
+.signup{
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+}
+.signup-link{
+  color: red; 
+  text-decoration: none;
+}
+.signup-link:hover {
+  color: red
+}
+
