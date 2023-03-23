@@ -1,4 +1,4 @@
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "../components/SignUpForm";
 function SignUp() {
   return (
     <div className='form-container'>

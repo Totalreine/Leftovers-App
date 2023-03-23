@@ -1,5 +1,5 @@
 
-import BasicExample from './FormComp';
+import BasicExample from '../components/FormComp';
 function Login() {
     return (
                <div className='form-container'>
