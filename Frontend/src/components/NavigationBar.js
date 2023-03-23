@@ -1,9 +1,11 @@
-import {Container, Row, Col} from 'react-bootstrap';
+import { useState } from "react";
+import {Container} from 'react-bootstrap';
 import Sidebar from './Sidebar';
 import Navbar from 'react-bootstrap/Navbar';
+import Collapse from 'react-bootstrap/Collapse';
 
 function ContainerOutsideExample() {
-
+  const [isVisible, setVisibility] = useState(false);
   return (
     <Container fluid>
       <Navbar expand="lg" variant="light" className="nav-color" fixed="top">
@@ -11,7 +13,7 @@ function ContainerOutsideExample() {
           <Navbar.Brand href="#" bsStyle="default" style={{ color: "white", width: "20%" }}>
             <div className='logo-icon-div'>
               <div className="icon-div">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars"  onClick={() => setVisibility(!isVisible)}></i>
               </div>
               <div className='logo-div'>
                 <img src='./logo.png' alt="bug" height={25} />
@@ -20,12 +22,7 @@ function ContainerOutsideExample() {
           </Navbar.Brand>
         </Container>
       </Navbar>
-      <Row noGutters style={{ height: "100%", width:"25%", position:"absolute" }}>
-        <Col xs={6} md={3} style={{ background: "#9E9BF2", height:"100%", width: "100%" }}>
-          <Sidebar />
-        </Col>
-      </Row>
-
+        <Sidebar isVisible={isVisible} />
     </Container>
   );
 }

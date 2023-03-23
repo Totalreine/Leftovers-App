@@ -1,5 +1,4 @@
 import SignUpForm from "./SignUpForm";
-
 function SignUp() {
   return (
     <div className='form-container'>
