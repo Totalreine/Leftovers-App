@@ -8,7 +8,7 @@ function SignUp() {
         <div className='message'>
           <p>
             <b>Fit Cooking Back Into Your Schedule with </b>
-            <img src='./logo-blk.png' alt="bug" height={40} />
+            <img src='./logo-blk.png' alt="leftovers-logo" height={40} />
           </p>
         </div>
       </div>

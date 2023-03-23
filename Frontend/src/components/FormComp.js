@@ -25,7 +25,7 @@ function BasicExample() {
       </Button>
       </div>
       <div className="signup">
-      <Link to="/signup" className="signup-link">Don’t have an account yet? Sign Up</Link>
+      <Link to="/" className="signup-link">Don’t have an account yet? Sign Up</Link>
       </div>
     </Form>
   );
