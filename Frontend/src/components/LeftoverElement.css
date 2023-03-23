@@ -1,0 +1,9 @@
+.delete {
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
+
+.leftoverListItem:hover > .delete {
+  opacity: 1.0;
+  color: #A60303;
+}

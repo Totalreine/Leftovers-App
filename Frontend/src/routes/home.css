@@ -1,0 +1,35 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: row;
+  color: #4E4E4E;
+  background-color: #E8E8E8;
+}
+
+.carousel {
+  display: flex;
+  margin-top: 3vh;
+  background-color: #ffff;
+  margin-bottom: 3vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
+content {
+  display: flex;
+  flex-direction: column;
+}
