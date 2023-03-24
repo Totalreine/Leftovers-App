@@ -40,7 +40,7 @@ const userRoutes = require("./routes/user");
 
 app.use(authRoutes);
 app.use(recipeRoutes);
-app.use(userRoutes);
+app.use("/user", userRoutes);
 
 Ingredient.belongsToMany(Recipe, { through: recipe_ingredient });
 Recipe.belongsToMany(Ingredient, { through: recipe_ingredient });
