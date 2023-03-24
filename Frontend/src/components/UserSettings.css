@@ -1,0 +1,29 @@
+.userMenu {
+  padding-left: 1.5rem;
+  color: #A60303;
+  text-decoration-line: none;
+}
+
+.settingsForm {
+  background-color: #F2E088;
+  align-self: flex-end!important;
+  --bs-dropdown-border-radius: 0;
+  --bs-dropdown-border-width: 0;
+  --bs-dropdown-link-active-bg: #A60303;
+  --bs-dropdown-link-disabled-color: #adb5bd;
+}
+
+.link {
+  text-decoration: none;
+  color: #4E4E4E;
+}
+
+.link:hover {
+  color: #A60303;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 7.5rem;
+}
