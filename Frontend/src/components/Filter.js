@@ -55,7 +55,7 @@ const CustomMenu = React.forwardRef(
                 <Form.Check type={"checkbox"} label={"High protein"}/>
                 <Form.Check type={"checkbox"} label={"Low carbs"}/>
                 <Form.Check type={"checkbox"} label={"Low fat"}/>
-                <Form.Check type={"checkbox"} label={"low sodium"}/>
+                <Form.Check type={"checkbox"} label={"Low Sodium"}/>
               </Col>
             </Row>
           </Container>

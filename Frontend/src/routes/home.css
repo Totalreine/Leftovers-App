@@ -22,7 +22,6 @@ main {
 
 .carousel {
   display: flex;
-  margin-top: 3vh;
   background-color: #ffff;
   margin-bottom: 3vh;
   padding-top: 3vh;
