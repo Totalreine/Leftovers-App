@@ -10,6 +10,7 @@ import Login from './routes/Login';
 import Home from './routes/home';
 import Welcome from './routes/welcome';
 import LeftoversProvider from './providers/LeftoversProvider';
+import AuthProvider from './providers/authProvider'
 
 const router = createBrowserRouter([
   {
@@ -29,9 +30,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthProvider>
     <LeftoversProvider>
     <RouterProvider router={router} />
     </LeftoversProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

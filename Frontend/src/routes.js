@@ -4,7 +4,7 @@ export const routes = [
     route: '/home', 
   },
   { name: 'Welcome',
-    route: '/welcome'
+    route: '/'
   }
 
 ]
