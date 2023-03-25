@@ -15,6 +15,13 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
+.navbar{
+  justify-content: space-between;
+}
+.logo-link-div{
+  display: flex;
+  width: 35%;
+}
 
 .navbar-brand {
 color: #FFFFFF;
@@ -25,11 +32,18 @@ font-size: 1.8rem;
   color: #4E4E4E
   }
 
-.userLinks {
+.userLinks, #links {
   color: #FFFFFF;
   width: 24%;
+}
+.nav-links{
+  padding-top: 15px;
   display: flex;
-  justify-content: space-between;
+  width: 70%;
+
+}
+#links{
+  text-decoration: none;
 }
 
 .NavLogOut {

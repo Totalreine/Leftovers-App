@@ -2,9 +2,12 @@ import Col from 'react-bootstrap/Col';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Login.css"
 import BasicExample from '../components/FormComp';
+import NavBar from '../components/NavBar';
 function Login() {
     return (
+
         <div className='login-page'>
+            <NavBar/>
                 <div className='row g-0'>
                     <Col id='message-container'>
                             < div className='align-self-center' id='message'>

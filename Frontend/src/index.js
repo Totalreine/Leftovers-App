@@ -6,13 +6,35 @@ import {
 } from "react-router-dom";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Login from './routes/Login';
+import Home from './routes/home';
+import Welcome from './routes/welcome';
+import LeftoversProvider from './providers/LeftoversProvider';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Welcome />,
+  },
+  {
+    path: "home",
+    element: <Home />,
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <LeftoversProvider>
+    <RouterProvider router={router} />
+    </LeftoversProvider>
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
