@@ -9,16 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    
-    <Router>
-      <NavigationBar/>  
-          <Routes>
-              <Route exact path='/'element= {<Home/>}/>
-              <Route path='/signup' element={<SignUp/>} />
-              <Route path='/login' element={<Login/>} />
-          </Routes>
-      </Router>
+    <div className="App">
 
+    </div>
   );
 }
 

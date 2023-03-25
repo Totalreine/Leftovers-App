@@ -1,0 +1,110 @@
+.sideBar {
+  width: 25%;
+  background-color: #F29544;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.myLeftovers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 3vh;
+  margin-inline: auto;
+  width: 75%;
+  justify-content: space-around;
+}
+
+.category {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.dot {
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+  height: 10px;
+  width: 10px;
+  background-color: #A60303;
+  border-radius: 50%;
+  display: inline-block;
+}
+.plusSign {
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
+.element:hover > .dot {
+  opacity: 1.0;
+  height: 10px;
+  width: 10px;
+  background-color: #A60303;
+  border-radius: 50%;
+  display: inline-block;
+}
+.myLeftovers:hover > .plusSign {
+    display: block;
+    opacity: 1.0;
+    color: #A60303;
+}
+
+.leftoversList{
+  margin-top: 3vh;
+  padding-left: 0;
+}
+
+.leftoverListItem {
+  display: flex;
+  margin-inline: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.delete {
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
+
+.leftoverListItem:hover > .delete {
+  opacity: 1.0;
+  color: #A60303;
+}
+
+.newItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+input {
+  height: 2em;
+  background: transparent;
+  margin-top: 1px;
+  border: none;
+  border-bottom: solid 2px #F2E088;
+  justify-items: center;
+  resize: none;
+  color: #FFFFFF;
+}
+
+input:focus {
+  outline: none;
+}
+
+.myRecipies {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 3vh;
+  margin-inline: auto;
+  width: 75%;
+  margin-right: 6vh;
+  justify-content: space-around;
+}
+
+.sideBarCategory {
+  padding-right: 6vh;
+}
