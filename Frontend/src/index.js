@@ -10,7 +10,8 @@ import reportWebVitals from './reportWebVitals';
 import Home from "./routes/home";
 import Welcome from "./routes/welcome"
 import LeftoversProvider from "./providers/LeftoversProvider"
-
+import MyRecipes from './components/MyRecipes';
+import RecipeHistory from './routes/RecipeHistory';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     path: "home",
     element: <Home />,
   },
+  {
+    path: "/myrecipes",
+    element:<RecipeHistory/>
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

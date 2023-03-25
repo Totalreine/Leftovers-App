@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import "./UserSettings.css"
-
 import Dropdown from 'react-bootstrap/Dropdown';
 import Icon from '@mdi/react';
 import { mdiAccountCog } from '@mdi/js';
 
+
 const UserToggle = React.forwardRef(({ children, onClick }, ref) => (
+
   <div>
   <Icon path={mdiAccountCog} size={1.5}
     ref={ref}
