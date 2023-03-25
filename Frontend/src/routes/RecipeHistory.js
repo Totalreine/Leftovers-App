@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyRecipesElement from "../components/MyRecipesElement";
-import '../Recipe-History.css'
+import './Recipe-History.css'
 
 
 function RecipeHistory() {
