@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import Home from "./routes/home";
 import Welcome from "./routes/welcome"
 import LeftoversProvider from "./providers/LeftoversProvider"
+import ShoppingList from './routes/ShoppingList';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "home",
     element: <Home />,
+  },
+  {
+    path: "shoppinglist",
+    element: <ShoppingList />,
   },
 ]);
 
