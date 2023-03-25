@@ -4,8 +4,8 @@ function ShoppingListItem() {
   const shoppingList = ["Cooking Oil", "Apples", "Lettuce"];
   return (
     <div>
-    {shoppingList.map((item, index) => (
-      <ListGroup.Item>  <input value={item} type="checkbox" /> {item[index]} </ListGroup.Item> 
+    {shoppingList.map((item) => (
+      <ListGroup.Item>  <input value={item} type="checkbox" /> {item} </ListGroup.Item> 
    ))}
    </div>
   );

@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './ShoppingList.css'
+import ShoppingListComp from "../components/ShoppingListComp";
 
 
 function ShoppingList() {
@@ -15,6 +16,7 @@ function ShoppingList() {
         <SideBar />
         </Col>
         <Col md={10}>
+        <ShoppingListComp/>
         </Col>
       </Row>
    
