@@ -1,9 +1,11 @@
 import Col from 'react-bootstrap/Col';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Login.css"
-import BasicExample from '../components/FormComp';
+import LoginForm from '../components/LoginForm';
 import NavBar from '../components/NavBar';
 function Login() {
+
+  
     return (
 
         <div className='login-page'>
@@ -20,7 +22,7 @@ function Login() {
 
                     </Col>
                     <Col id='login-form'>
-                         <BasicExample/>
+                         <LoginForm/>
                         
                     </Col>
                 </div>

@@ -21,6 +21,7 @@ nav {
 .logo-link-div{
   display: flex;
   width: 35%;
+  margin-left: 5%;
 }
 
 .navbar-brand {
