@@ -1,0 +1,30 @@
+.recipeElement {
+  margin-bottom: 3vh;
+  background-color: #ffff;
+  margin-top: 3vh;
+  display: flex;
+  align-items: center;
+}
+
+.smallPhoto {
+  height: 15vh;
+  width: auto;
+}
+
+.recipeName {
+  margin-left: 15%;
+}
+
+.deleteReceipt {
+  opacity: 1.0;
+  color: #A60303;
+}
+
+.row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+}
+
+.instructions {
+  background-color: #ffff;
+}
