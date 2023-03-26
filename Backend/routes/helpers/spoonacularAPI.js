@@ -1,56 +1,52 @@
-import formatIngredients from "./formatIngredients"
-import formatSteps from "./formatSteps"
+const formatIngredients = require("./formatIngredients");
+const formatSteps = require("./formatSteps");
 const axios = require('axios');
 
 const newRecipes = (ingredients, diet, mealtype, intolerances) => {
   const apiKey = process.env.API_KEY;
+
+  let params = {
+    addRecipeInformation: true, 
+    fillIngredients: true,
+    instructionsRequired: true,
+    sort: "max-used-ingredients",
+    number: 1,
+    diet: diet,
+    type: mealtype,
+    intolerances: intolerances
+  }
+
+  if (ingredients && ingredients.length > 0) {
+    params["includeIngredients"] = ingredients;
+  }
 
   // Send a GET request
   return axios({
     method: 'get',
     url: `https://api.spoonacular.com/recipes/complexSearch`,
     headers: {'x-api-key': apiKey},
-    params: {
-      includeIngredients: ingredients,
-      addRecipeInformation: true,
-      fillIngredients: true,
-      instructionsRequired: true,
-      sort: max-used-ingredients,
-      number: 30,
-      diet: diet,
-      type: mealtype,
-      intolerances: intolerances
-    },
+    params,
     transformResponse: [
       (data) => {
-        let resp
-  
-        try {
-          resp = JSON.parse(data)
-        } catch (error) {
-          throw Error(`[requestClient] Error parsing response JSON data - ${JSON.stringify(error)}`)
-        }
-  
-        if (resp.status === 'success') {
-          return resp.data
-        } else {
-          throw Error(`[requestClient] Request failed with reason -  ${data}`)
-        }
+        return JSON.parse(data);
       }
     ]
   })
     .then((res) => {
-      const results = res.results;
+      const results = res.data["results"];
+      console.log("results", results)
 
       let transformedRecipes = [];
       
       for (const recipe of results) {
-        const missedIngredients = formatIngredients(recipe["missedIngredients"]);
-        const usedIngredients = formatIngredients(recipe["usedIngredients"]);
-        const unusedIngredients = formatIngredients(recipe["unusedIngredients"]);
+        const missedIngredients = formatIngredients.formatIngredients(recipe["missedIngredients"]);
+        const usedIngredients = formatIngredients.formatIngredients(recipe["usedIngredients"]);
+        const unusedIngredients = formatIngredients.formatIngredients(recipe["unusedIngredients"]);
 
-        const analysedInstructions = recipe["analyzedInstructions"]["steps"]
-        const instructions = formatSteps(analysedInstructions)
+        console.log("recipe", recipe)
+
+        const analysedInstructions = recipe["analyzedInstructions"][0]["steps"]
+        const instructions = formatSteps.formatSteps(analysedInstructions)
         
         
         const newRecipe = {

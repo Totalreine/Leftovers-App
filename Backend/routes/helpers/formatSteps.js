@@ -1,5 +1,6 @@
 //returns array of step objects
 const formatSteps = function (steps) {
+  console.log("steps", steps)
   let stepsArray = [];
 
   for (const i of steps) {

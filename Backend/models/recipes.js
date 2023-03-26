@@ -32,7 +32,7 @@ const Recipe = sequelize.define(
       allowNull: false,
     },
     readyinminutes: {
-      type: Sequelize.NUMBER,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     image: {

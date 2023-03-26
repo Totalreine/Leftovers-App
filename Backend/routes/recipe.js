@@ -4,11 +4,13 @@ const router = express.Router();
 const Recipe = require("../models/recipes");
 const Ingredient = require("../models/ingredients");
 
+const spoonacularApi = require("./helpers/spoonacularAPI");
+
 
 router.get("/recipes", (req, res) => {
   const {ingredients, diet, mealtype, intolerances} = req.params
 
-  newRecipes(ingredients, diet, mealtype, intolerances)
+  spoonacularApi.newRecipes(ingredients, diet, mealtype, intolerances)
   .then(data => {
     res.json(data);
   })
