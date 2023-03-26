@@ -18,6 +18,7 @@ function RecipeHistory() {
         </Col>
         <Col md={10}>
         <MyRecipesElement style={{width:'100%'}}/>
+        <MyRecipesElement style={{width:'100%'}}/>
         </Col>
       </Row>
    
