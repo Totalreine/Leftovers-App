@@ -4,9 +4,7 @@ const sequelize = require("./util/dbConnection");
 const Recipe = require("./models/recipes");
 const User = require("./models/users");
 const Ingredient = require("./models/ingredients");
-const Nutrient = require("./models/nutrients");
 const recipe_ingredient = require("./models/recipe_ingredient");
-const recipe_nutrient = require("./models/recipe_nutrient");
 const user_recipe = require("./models/user_recipe");
 
 const PORT = process.env.PORT || 8080;
@@ -44,8 +42,6 @@ app.use(userRoutes);
 
 Ingredient.belongsToMany(Recipe, { through: recipe_ingredient });
 Recipe.belongsToMany(Ingredient, { through: recipe_ingredient });
-Nutrient.belongsToMany(Recipe, { through: recipe_nutrient });
-Recipe.belongsToMany(Nutrient, { through: recipe_nutrient });
 User.belongsToMany(Recipe, { through: user_recipe });
 Recipe.belongsToMany(User, { through: user_recipe });
 
