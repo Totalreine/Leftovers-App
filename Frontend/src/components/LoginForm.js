@@ -20,7 +20,7 @@ function LoginForm() {
         <Form.Control type="password" placeholder="Password"/>
       </Form.Group>
       <div className= "btn-div">
-      <Button variant="primary"  type="submit">
+      <Button variant="primary" id="form-btn" type="submit">
         <p>Login</p>
       </Button>
       </div>
