@@ -15,10 +15,12 @@ function Home() {
   const { leftovers } = useContext(leftoversContext);
   const { recipes, addRecipes } = useContext(recipesContext);
 
-  const params = [leftovers]
+  let leftoversNames = Object.keys(leftovers);
+  const formattedLeftovers = leftoversNames.join();
+  console.log(leftoversNames)
 
   useEffect(() => {
-    addRecipes(params)
+    addRecipes({"ingredients": formattedLeftovers})
   }, [leftovers])
 
   return (
@@ -28,7 +30,7 @@ function Home() {
         <SideBar />
         <section className="content">
           <header className="carousel">
-            <ReceiptCarousel />
+            <ReceiptCarousel recipes={recipes} />
           </header>
           <section className="myRecipes">
             <MyRecipes />

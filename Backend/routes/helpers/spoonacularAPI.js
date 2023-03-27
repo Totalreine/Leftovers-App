@@ -51,7 +51,7 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
           title: recipe["title"],
           readyInMinutes: recipe["readyInMinutes"],
           image: recipe["image"],
-          vegetarian: recipe["vegeterian"],
+          vegetarian: recipe["vegetarian"],
           vegan: recipe["vegan"],
           glutenFree: recipe["glutenFree"],
           dairyFree: recipe["dairyFree"],

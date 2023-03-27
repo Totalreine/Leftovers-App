@@ -12,14 +12,14 @@ import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
 import { useContext } from 'react';
-import { recipesContext } from '../providers/RecipesProvider';
-import {userRecipesContext} from "../providers/UsersRecipesProvider";
+import { userRecipesContext } from "../providers/UsersRecipesProvider";
 
-function ReceiptCarousel() {
+function ReceiptCarousel(props) {
   const ref = useRef(null);
   const [index, setIndex] = useState(0);
-  const { recipes } = useContext(recipesContext);
   const { addUserRecipes } = useContext(userRecipesContext);
+
+  console.log(props.recipes[index])
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -30,12 +30,13 @@ function ReceiptCarousel() {
   };
   const onLikeClick = () => {
     // index && addRecipe(objrecipe)
-    console.log(`I liked ${recipes[index].title}`)
+    console.log(`I liked ${props.recipes[index].title}`)
     ref.current.next();
   };
 
   let recipesElements = [];
-  for (let recipe of recipes) {
+
+  for (let recipe of props.recipes) {
     recipesElements.push(
     <Carousel.Item key={recipe.id}>
     <img src={recipe.image} className="mainPicture"/>
@@ -66,7 +67,7 @@ function ReceiptCarousel() {
         </div>
         </Col>
         <Col className="ingredients" xs={4}>
-          <h4> Preparation time: 30 min </h4>
+          <h4> Preparation time:  minutes</h4>
           <h4> Level: Easy</h4>
         <p> ⅔ cup soy sauce
           ¼ cup brown sugar
