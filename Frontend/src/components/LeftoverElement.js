@@ -6,7 +6,6 @@ import { leftoversContext } from '../providers/LeftoversProvider';
 
 function LeftoverElement(props) {
   const { deleteLeftover } = useContext(leftoversContext);
-  console.log("props", props)
   
   return (
     <li className="leftoverListItem">
