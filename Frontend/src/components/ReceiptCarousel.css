@@ -1,0 +1,54 @@
+.mainPicture {
+  width: 73%;
+  height: auto;
+  margin-left: 15%;
+}
+.mainRecipeInfo {
+  display:flex;
+}
+
+.buttons {
+  display:flex;
+  width: 73%;
+  margin-left: 15%;
+  justify-content: space-evenly;
+}
+
+.btn {
+  height: 7vh;
+  width: 14vh;
+  border-radius: 20px;
+  border: 3px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.btn:hover {
+  background-color: #9E9BF2;
+  border-color: #ffffff;
+}
+
+.reject {
+  color: #F24405;
+}
+
+.reject:hover {
+  color: #ffffff;
+  background-color: #F24405
+}
+
+.accept {
+  color: #9E9BF2;
+}
+.mainRecipeInfo {
+  margin-right: 5%;
+}
+
+.carousel-caption {
+  position: initial;
+  padding-top: 1.25rem;
+  color: #4E4E4E;
+  text-align: center;
+}
