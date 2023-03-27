@@ -7,19 +7,27 @@ const router = express.Router();
 
 router.get("/recipes", async (req, res) => {
   const userID = req.session.userID;
-  const user = await User.findByPk(userID);
-  const recipes = await user.getRecipes();
-  res.json(recipes);
+  try {
+    const user = await User.findByPk(userID);
+    const recipes = await user.getRecipes();
+    res.json(recipes);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/recipe/:id", async (req, res) => {
   const recipeId = req.params.id;
-  const recipe = await Recipe.findOne({
-    where: {
-      id: recipeId,
-    },
-  });
-  res.json(recipe);
+  try {
+    const recipe = await Recipe.findOne({
+      where: {
+        id: recipeId,
+      },
+    });
+    res.json(recipe);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.post("/recipe", async (req, res) => {
@@ -42,33 +50,37 @@ router.post("/recipe", async (req, res) => {
     recipeIng,
     recipeNut,
   } = req.body;
-  const user = await User.findByPk(userID);
+  try {
+    const user = await User.findByPk(userID);
 
-  const ingredients = await Ingredient.bulkCreate(recipeIng);
+    const ingredients = await Ingredient.bulkCreate(recipeIng);
 
-  const nutrients = await Nutrient.bulkCreate(recipeNut);
+    const nutrients = await Nutrient.bulkCreate(recipeNut);
 
-  const recipe = await Recipe.create({
-    name,
-    vegan,
-    glutenfree,
-    dairyfree,
-    veryhealthy,
-    vegetarian,
-    readyinminutes,
-    servings,
-    sourceurl,
-    image,
-    summary,
-    weightperserving,
-    instructions,
-    cuisine,
-  });
+    const recipe = await Recipe.create({
+      name,
+      vegan,
+      glutenfree,
+      dairyfree,
+      veryhealthy,
+      vegetarian,
+      readyinminutes,
+      servings,
+      sourceurl,
+      image,
+      summary,
+      weightperserving,
+      instructions,
+      cuisine,
+    });
 
-  await recipe.addNutrient(nutrients);
-  await recipe.addIngredient(ingredients);
-  await user.addRecipe(recipe);
-  res.json("done");
+    await recipe.addNutrient(nutrients);
+    await recipe.addIngredient(ingredients);
+    await user.addRecipe(recipe);
+    res.json("done");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.post("/edit-recipe", async (req, res) => {
@@ -89,41 +101,49 @@ router.post("/edit-recipe", async (req, res) => {
     instructions,
     cuisine,
   } = req.body;
-  const recipe = await Recipe.update(
-    {
-      name,
-      vegan,
-      glutenfree,
-      dairyfree,
-      veryhealthy,
-      vegetarian,
-      readyinminutes,
-      servings,
-      sourceurl,
-      image,
-      summary,
-      weightperserving,
-      instructions,
-      cuisine,
-    },
-    {
-      where: {
-        id: prodId,
+  try {
+    const recipe = await Recipe.update(
+      {
+        name,
+        vegan,
+        glutenfree,
+        dairyfree,
+        veryhealthy,
+        vegetarian,
+        readyinminutes,
+        servings,
+        sourceurl,
+        image,
+        summary,
+        weightperserving,
+        instructions,
+        cuisine,
       },
-    }
-  );
-  res.json("done");
+      {
+        where: {
+          id: prodId,
+        },
+      }
+    );
+    res.json("done");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.delete("/recipe/:id", async (req, res) => {
   const recipeId = req.params.id;
-  const recipe = await Recipe.destroy({
-    where: {
-      id: recipeId,
-    },
-  });
+  try {
+    const recipe = await Recipe.destroy({
+      where: {
+        id: recipeId,
+      },
+    });
 
-  res.json("deleted");
+    res.json("deleted");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;

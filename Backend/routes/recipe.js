@@ -6,7 +6,7 @@ router.get("/recipes", (req, res) => {});
 
 router.post("/recipes", (req, res) => {
   const { ing1, ing2, ing3, ing4 } = req.body;
-  const ingredients = `${ing1},+${ing2},+${ing3},+${ing4}`;
+  const ingredients = `${ing1},${ing2},${ing3}`;
   axios
     .get(
       `https://api.spoonacular.com/recipes/findByIngredients?apiKey=6c1771e1cdb34f8dad886336e8b332cc&ingredients=${ingredients}&ranking=1&number=10`
