@@ -47,7 +47,6 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
         
         
         const newRecipe = {
-          id: recipe["id"],
           title: recipe["title"],
           readyInMinutes: recipe["readyInMinutes"],
           image: recipe["image"],

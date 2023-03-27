@@ -29,6 +29,7 @@ function ReceiptCarousel(props) {
   const onRejectClick = () => {
     ref.current.prev();
   };
+  
   const onLikeClick = () => {
     // index && addRecipe(objrecipe)
     console.log(`I liked ${props.recipes[index].title}`)
