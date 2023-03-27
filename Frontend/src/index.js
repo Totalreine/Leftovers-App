@@ -9,10 +9,11 @@ import reportWebVitals from './reportWebVitals';
 import Login from './routes/Login';
 import Home from './routes/home';
 import SignUp from './routes/SignUp'
-import Welcome from './routes/welcome';
 import LeftoversProvider from './providers/LeftoversProvider';
 import RecipesProvider from './providers/RecipesProvider';
 import UserRecipesProvider from './providers/UsersRecipesProvider';
+import AuthProvider from './providers/authProvider';
+
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthProvider>
     <RecipesProvider>
     <LeftoversProvider>
     <UserRecipesProvider>
@@ -40,6 +42,7 @@ root.render(
     </UserRecipesProvider>
     </LeftoversProvider>
     </RecipesProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 
