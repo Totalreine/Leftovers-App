@@ -56,10 +56,6 @@ function SideBar() {
       <ul className="leftoversList">
         { leftoverElements }
       </ul>
-      <div className="myRecipies element">
-        <span className="dot"></span>
-        <span className="sideBarCategory">My Recipes</span>
-      </div>
     </div>
   );
 }
