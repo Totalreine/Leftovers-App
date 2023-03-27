@@ -10,7 +10,7 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
     fillIngredients: true,
     instructionsRequired: true,
     sort: "max-used-ingredients",
-    number: 1,
+    number: 3,
     diet: diet,
     type: mealtype,
     intolerances: intolerances
@@ -34,7 +34,6 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
   })
     .then((res) => {
       const results = res.data["results"];
-      console.log("results", results)
 
       let transformedRecipes = [];
       
@@ -42,8 +41,6 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
         const missedIngredients = formatIngredients.formatIngredients(recipe["missedIngredients"]);
         const usedIngredients = formatIngredients.formatIngredients(recipe["usedIngredients"]);
         const unusedIngredients = formatIngredients.formatIngredients(recipe["unusedIngredients"]);
-
-        console.log("recipe", recipe)
 
         const analysedInstructions = recipe["analyzedInstructions"][0]["steps"]
         const instructions = formatSteps.formatSteps(analysedInstructions)
@@ -54,7 +51,7 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
           title: recipe["title"],
           readyInMinutes: recipe["readyInMinutes"],
           image: recipe["image"],
-          vegeterian: recipe["vegeterian"],
+          vegetarian: recipe["vegeterian"],
           vegan: recipe["vegan"],
           glutenFree: recipe["glutenFree"],
           dairyFree: recipe["dairyFree"],

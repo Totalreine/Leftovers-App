@@ -19,8 +19,6 @@ function Home() {
 
   useEffect(() => {
     addRecipes(params)
-    console.log(params)
-    console.log(recipes)
   }, [leftovers])
 
   return (

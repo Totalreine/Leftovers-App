@@ -30,8 +30,20 @@ function ReceiptCarousel() {
   };
   const onLikeClick = () => {
     // index && addRecipe(objrecipe)
+    console.log(`I liked ${recipes[index].title}`)
     ref.current.next();
   };
+
+  let recipesElements = [];
+  for (let recipe of recipes) {
+    recipesElements.push(
+    <Carousel.Item key={recipe.id}>
+    <img src={recipe.image} className="mainPicture"/>
+    <Carousel.Caption>
+    <h3> {recipe.title} </h3>
+    </Carousel.Caption>
+    </Carousel.Item>
+    )}
 
   return (
     <Container>
@@ -46,24 +58,7 @@ function ReceiptCarousel() {
         ref={ref}
         interval={null}
         >
-        <Carousel.Item id="1">
-        <img src="https://www.allrecipes.com/thmb/3AmXs-yYB339MsfGz7RxN9OYzeI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/240708-broccoli-and-chicken-stir-fry-3x4-186-a6ecaccb1fdd4336bc36f5f80415c4cb.jpg" className="mainPicture"/>
-        <Carousel.Caption>
-          <h3> Broccoli and Chicken Stir-Fry</h3>
-        </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item id="2">
-        <img src="https://www.allrecipes.com/thmb/3AmXs-yYB339MsfGz7RxN9OYzeI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/240708-broccoli-and-chicken-stir-fry-3x4-186-a6ecaccb1fdd4336bc36f5f80415c4cb.jpg" className="mainPicture"/>
-        <Carousel.Caption>
-          <h3> Broccoli and Chicken Stir-Fry</h3>
-        </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item id="3">
-        <img src="https://www.allrecipes.com/thmb/3AmXs-yYB339MsfGz7RxN9OYzeI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/240708-broccoli-and-chicken-stir-fry-3x4-186-a6ecaccb1fdd4336bc36f5f80415c4cb.jpg" className="mainPicture"/>
-        <Carousel.Caption>
-          <h3> Broccoli and Chicken Stir-Fry</h3>
-        </Carousel.Caption>
-        </Carousel.Item>
+        { recipesElements }
         </Carousel>
         <div className="buttons">
         <Col xs="auto"><Button className="reject btn" onClick={onRejectClick}><Icon path={mdiClose} size={1.5} /></Button></Col>

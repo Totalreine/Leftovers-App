@@ -14,7 +14,7 @@ export default function RecipesProvider(props) {
   function addRecipes(params) {
     axios.get(`/recipes`, params)
     .then((all) => {
-      setRecipes(prev => ({ ...prev, recipes: all[0].data }));
+      setRecipes(prev => all.data);
     });    
   }
   
