@@ -30,8 +30,8 @@ function SignUpForm() {
         <Form.Control type="password" placeholder="Confirm password"/>
       </Form.Group>
       <div className= "btn-div">
-      <Button variant="primary" style={{backgroundColor: '#F29544', borderColor:'#F29544', padding: '10px 166px' }} type="submit">
-        Sign Up
+      <Button variant="primary"  type="submit">
+        <p>Sign Up</p>
       </Button>
       </div>
       <div className="link-div">

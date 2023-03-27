@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 
 function SignUp() {
   return (
-    <div className='login-page'>
+    <div className='signup-page'>
       <NavBar />
       <div className='row g-0'>
         <Col id='message-container'>
@@ -14,12 +14,12 @@ function SignUp() {
             <p>
               <b>Fit Cooking Back Into Your Schedule with </b>
             </p>
-            <img src='./logo-blk.png' alt="bug" height={40} />
+            <img src='./logo-blk.png' alt="leftovers-logo" height={40} />
 
           </div>
 
         </Col>
-        <Col id='login-form'>
+        <Col id='signup-form'>
           <SignUpForm />
 
         </Col>
