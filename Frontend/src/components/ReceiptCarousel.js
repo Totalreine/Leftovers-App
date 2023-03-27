@@ -11,7 +11,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { userRecipesContext } from "../providers/UsersRecipesProvider";
 
 function ReceiptCarousel(props) {
@@ -36,59 +36,115 @@ function ReceiptCarousel(props) {
 
   let recipesElements = [];
 
-  for (let recipe of props.recipes) {
+  for (const recipe of props.recipes) {
     recipesElements.push(
-    <Carousel.Item key={recipe.id}>
-    <img src={recipe.image} className="mainPicture"/>
-    <Carousel.Caption>
-    <h3> {recipe.title} </h3>
-    </Carousel.Caption>
-    </Carousel.Item>
-    )}
+      <Carousel.Item key={recipe.id}>
+        <img src={recipe.image} className="mainPicture" />
+        <Carousel.Caption>
+          <h3> {recipe.title} </h3>
+        </Carousel.Caption>
+      </Carousel.Item>
+    )
+  }
+
+  // useEffect(() => {
+  //   const intolerances = [loadedRecipes.dairyFree, loadedRecipes.glutenFree, loadedRecipes.vegan, loadedRecipes.vegetarian];
+
+  //   let tags = [];
+  //   if (loadedRecipes.dairyFree) {
+  //     tags.push('Dairy Free 🐮')
+  //   } else if (loadedRecipes.glutenFree) {
+  //     tags.push('Gluten Free 🍞')
+  //   } else if (loadedRecipes.vegan) {
+  //     tags.push('Vegan 🥬')
+  //   } else if (loadedRecipes.vegeterian) {
+  //     tags.push('Veveterian 🥗')
+  //   }
+  //   return <h4> {tags} </h4>;
+  // }, [props.recipes[index]]);
+
+
+  function SpecialTags() {
+    if (props.recipes.length === 0) {
+      return <h4> </h4>
+    }
+    const loadedRecipes = props.recipes[index];
+
+    let tags = [];
+    if (loadedRecipes.dairyFree) {
+      tags.push('Dairy Free 🐮')
+    } if (loadedRecipes.glutenFree) {
+      tags.push('Gluten Free 🍞')
+    } if (loadedRecipes.vegan) {
+      tags.push('Vegan 🥬')
+    } if (loadedRecipes.vegeterian) {
+      tags.push('Veveterian 🥗')
+    }
+    return tags.map(tag => <h5> {tag} </h5>)
+  }
+
+  function UsedIngredients() {
+    if (props.recipes[index].usedIngredients.length === 0) {
+      return <h4> </h4>
+    }
+    const usedIngredients = props.recipes[index].usedIngredients;
+
+    return (
+      usedIngredients.map(usedI =>
+        < React.Fragment>
+          <p> {usedI.name} {usedI.amount} {usedI.unit}</p>
+        </React.Fragment>
+      ))
+  };
+
+  function MissedIngredients() {
+    if (props.recipes[index].missedIngredients.length === 0) {
+      return <h4> </h4>
+    }
+
+    const missedIngredients = props.recipes[index].missedIngredients;
+    
+    return (
+    missedIngredients.map(missedI =>
+      < React.Fragment>
+        <p> {missedI.name} {missedI.amount} {missedI.unit}</p>
+      </React.Fragment>
+    ))
+  };
 
   return (
     <Container>
       <Filter />
       <Row className="mainRecipeInfo">
         <Col xs={8}>
-        <Carousel
-        activeIndex={index}
-        onSelect={handleSelect}
-        indicators={false}
-        controls={false}
-        ref={ref}
-        interval={null}
-        >
-        { recipesElements }
-        </Carousel>
-        <div className="buttons">
-        <Col xs="auto"><Button className="reject btn" onClick={onRejectClick}><Icon path={mdiClose} size={1.5} /></Button></Col>
-        <Col xs="auto"><Button className="accept btn" onClick={onLikeClick}><Icon path={mdiHeartOutline} size={1.3} /></Button></Col>
-        </div>
+          <Carousel
+            activeIndex={index}
+            onSelect={handleSelect}
+            indicators={false}
+            controls={false}
+            ref={ref}
+            interval={null}
+          >
+            {recipesElements}
+          </Carousel>
+          {props.recipes[index] && <div className="buttons">
+            <Col xs="auto"><Button className="reject btn" onClick={onRejectClick}><Icon path={mdiClose} size={1.5} /></Button></Col>
+            <Col xs="auto"><Button className="accept btn" onClick={onLikeClick}><Icon path={mdiHeartOutline} size={1.3} /></Button></Col>
+          </div>}
         </Col>
         <Col className="ingredients" xs={4}>
-          <h4> Preparation time:  minutes</h4>
-          <h4> Level: Easy</h4>
-        <p> ⅔ cup soy sauce
-          ¼ cup brown sugar
-          ½ teaspoon ground ginger
-          1 pinch red pepper flakes, or to taste
-          2 tablespoons water
-          2 tablespoons cornstarch
-          2 teaspoons vegetable oil, or to taste
-          3 skinless, boneless chicken breast halves, cut into chunks
-          1 onion, sliced
-          3 cups broccoli florets
-          ⅔ cup soy sauce
-          ¼ cup brown sugar
-          ½ teaspoon ground ginger
-          1 pinch red pepper flakes, or to taste
-          2 tablespoons water
-          2 tablespoons cornstarch
-          2 teaspoons vegetable oil, or to taste
-          3 skinless, boneless chicken breast halves, cut into chunks
-          1 onion, sliced
-          3 cups broccoli florets</p>
+          {props.recipes[index] && <h4> Preparation time: {props.recipes[index]["readyInMinutes"]} minutes</h4>}
+          {props.recipes[index] && < SpecialTags/>}
+          {props.recipes[index] && 
+          <>
+          <h5>Used Leftovers</h5>
+          < UsedIngredients />
+          </>}
+          {props.recipes[index] &&
+          <>
+          <h5>Missing Ingredients</h5>
+          < MissedIngredients />
+          </>}
         </Col>
       </Row>
     </Container>
