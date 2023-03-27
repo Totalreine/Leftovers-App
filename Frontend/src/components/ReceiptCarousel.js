@@ -11,9 +11,15 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
+import { useContext } from 'react';
+import { recipesContext } from '../providers/RecipesProvider';
+import {userRecipesContext} from "../providers/UsersRecipesProvider";
+
 function ReceiptCarousel() {
   const ref = useRef(null);
   const [index, setIndex] = useState(0);
+  const { recipes } = useContext(recipesContext);
+  const { addUserRecipes } = useContext(userRecipesContext);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -23,8 +29,21 @@ function ReceiptCarousel() {
     ref.current.prev();
   };
   const onLikeClick = () => {
+    // index && addRecipe(objrecipe)
+    console.log(`I liked ${recipes[index].title}`)
     ref.current.next();
   };
+
+  let recipesElements = [];
+  for (let recipe of recipes) {
+    recipesElements.push(
+    <Carousel.Item key={recipe.id}>
+    <img src={recipe.image} className="mainPicture"/>
+    <Carousel.Caption>
+    <h3> {recipe.title} </h3>
+    </Carousel.Caption>
+    </Carousel.Item>
+    )}
 
   return (
     <Container>
@@ -39,24 +58,7 @@ function ReceiptCarousel() {
         ref={ref}
         interval={null}
         >
-        <Carousel.Item>
-        <img src="https://www.allrecipes.com/thmb/3AmXs-yYB339MsfGz7RxN9OYzeI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/240708-broccoli-and-chicken-stir-fry-3x4-186-a6ecaccb1fdd4336bc36f5f80415c4cb.jpg" className="mainPicture"/>
-        <Carousel.Caption>
-          <h3> Broccoli and Chicken Stir-Fry</h3>
-        </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-        <img src="https://www.allrecipes.com/thmb/3AmXs-yYB339MsfGz7RxN9OYzeI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/240708-broccoli-and-chicken-stir-fry-3x4-186-a6ecaccb1fdd4336bc36f5f80415c4cb.jpg" className="mainPicture"/>
-        <Carousel.Caption>
-          <h3> Broccoli and Chicken Stir-Fry</h3>
-        </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-        <img src="https://www.allrecipes.com/thmb/3AmXs-yYB339MsfGz7RxN9OYzeI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/240708-broccoli-and-chicken-stir-fry-3x4-186-a6ecaccb1fdd4336bc36f5f80415c4cb.jpg" className="mainPicture"/>
-        <Carousel.Caption>
-          <h3> Broccoli and Chicken Stir-Fry</h3>
-        </Carousel.Caption>
-        </Carousel.Item>
+        { recipesElements }
         </Carousel>
         <div className="buttons">
         <Col xs="auto"><Button className="reject btn" onClick={onRejectClick}><Icon path={mdiClose} size={1.5} /></Button></Col>

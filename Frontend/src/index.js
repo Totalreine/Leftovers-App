@@ -9,9 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import Login from './routes/Login';
 import Home from './routes/home';
 import SignUp from './routes/SignUp'
-import Welcome from './routes/welcome';
 import LeftoversProvider from './providers/LeftoversProvider';
-import AuthProvider from './providers/authProvider';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +29,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthProvider>
     <LeftoversProvider>
+    <UserRecipesProvider>
     <RouterProvider router={router} />
+    </UserRecipesProvider>
     </LeftoversProvider>
-    </AuthProvider>
   </React.StrictMode>
 );
 

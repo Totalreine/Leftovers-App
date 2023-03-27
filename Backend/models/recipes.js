@@ -11,7 +11,7 @@ const Recipe = sequelize.define(
       unique: true,
       primaryKey: true,
     },
-    name: {
+    title: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -27,44 +27,32 @@ const Recipe = sequelize.define(
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
-    veryhealthy: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-    },
     vegetarian: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
     readyinminutes: {
-      type: Sequelize.NUMBER,
-      allowNull: false,
-    },
-    servings: {
-      type: Sequelize.NUMBER,
-      allowNull: false,
-    },
-    sourceurl: {
-      type: Sequelize.TEXT,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     image: {
       type: Sequelize.TEXT,
       allowNull: false,
     },
-    summary: {
+    missedIngredients: {
       type: Sequelize.TEXT,
       allowNull: false,
     },
-    weightperserving: {
-      type: Sequelize.NUMBER,
+    usedIngredients: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+    },
+    unusedIngredients: {
+      type: Sequelize.TEXT,
       allowNull: false,
     },
     instructions: {
       type: Sequelize.TEXT,
-      allowNull: false,
-    },
-    cuisine: {
-      type: Sequelize.STRING,
       allowNull: false,
     },
   },

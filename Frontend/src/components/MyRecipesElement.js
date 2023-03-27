@@ -21,10 +21,10 @@ function MyRecipesElement() {
     );
   }
   return (
-    <Accordion>
+    <Accordion defaultActiveKey="0">
       <div className="recipeContainer">
         <RecipieToggle />
-        <Accordion.Collapse>
+        <Accordion.Collapse >
         <Container className="instructions">
         <Row>
           <Col>

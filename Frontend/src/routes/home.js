@@ -7,7 +7,20 @@ import ReceiptCarousel from "../components/ReceiptCarousel";
 import MyRecipes from "../components/MyRecipes"
 import { Fragment } from "react";
 
+import { useContext, useEffect } from 'react';
+import { leftoversContext } from '../providers/LeftoversProvider';
+import {recipesContext} from "../providers/RecipesProvider";
+
 function Home() {
+  const { leftovers } = useContext(leftoversContext);
+  const { recipes, addRecipes } = useContext(recipesContext);
+
+  const params = [leftovers]
+
+  useEffect(() => {
+    addRecipes(params)
+  }, [leftovers])
+
   return (
     <Fragment>
       <NavBar />
