@@ -6,54 +6,18 @@ const Ingredient = require("../models/ingredients");
 
 const spoonacularApi = require("./helpers/spoonacularAPI");
 
-
 router.get("/recipes", (req, res) => {
-  const {ingredients, diet, mealtype, intolerances} = req.params
+  const { ingredients, diet, mealtype, intolerances } = req.params;
 
-  spoonacularApi.newRecipes(ingredients, diet, mealtype, intolerances)
-  .then(data => {
-    res.json(data);
-  })
-  .catch(e => {
-    console.error(e);
-    res.send(e);
-  });
-});
-
-router.get("/recipes", (req, res) => {});
-
-router.post("/recipes", (req, res) => {
-  const { ing1, ing2, ing3, ing4 } = req.body;
-  const ingredients = `${ing1},${ing2},${ing3}`;
-  axios
-    .get(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=6c1771e1cdb34f8dad886336e8b332cc&ingredients=${ingredients}&ranking=1&number=10`
-    )
+  spoonacularApi
+    .newRecipes(ingredients, diet, mealtype, intolerances)
     .then((data) => {
-      const recipes = data.data;
-      res.json(recipes);
+      res.json(data);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
     });
 });
-
-router.get("/recipe/:id", (req, res) => {
-  const recipeID = req.params.id;
-
-  axios
-    .get(
-      `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=6c1771e1cdb34f8dad886336e8b332cc&includeNutrition=true`
-    )
-    .then((data) => {
-      const recipe = data.data;
-      res.json(recipe);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-router.post("/recipe/:id", (req, res) => {});
 
 module.exports = router;
