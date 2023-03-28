@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState, useContext } from "react";
-import { authContext } from '../providers/authProvider';
+import { useState, useEffect} from "react";
 import axios from 'axios';
 
 function SignUpForm() {
@@ -10,24 +9,31 @@ function SignUpForm() {
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const { signUp} = useContext(authContext);
 
   const register = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8081/signup', {
+    axios.post('http://localhost:8080/signup', {
       email: emailReg,
       name: name,
       password: passwordReg
     })
     .then(function (response) {
       console.log(response);
-      signUp(emailReg,name);
+      getFirstName();
+ 
     })
     .catch(function (error) {
       console.log(error);
     });
 
   }
+  const getFirstName= function (){
+    const fullNameArr= name.split(' ');
+    return fullNameArr[0];
+  }
+  useEffect(()=>{
+    window.localStorage.setItem('first_name',JSON.stringify(getFirstName()))
+  }, [getFirstName])
   return (
     <Form className = "form" onSubmit={register}>
       <div className='form-label'><h4>Sign Up</h4></div>
