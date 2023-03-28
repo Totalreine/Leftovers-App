@@ -3,12 +3,11 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
 
-
 router.get("/", (req, res) => {
-  res.redirect('/');
- });
+  res.json("it works on main branch without cors and express.json");
+});
 
-router.get("/login", (req, res) => { });
+router.get("/login", (req, res) => {});
 
 router.post("/signup", (req, res) => {
   const name = req.body.name;
@@ -22,14 +21,11 @@ router.post("/signup", (req, res) => {
     password: hashedPassword,
   })
     .then((data) => {
-      res.redirect('/login');
+      console.log(data);
     })
     .catch((err) => {
       console.log(err);
-      res.send(err);
     });
-    res.send(err);
-
 });
 
 router.post("/login", (req, res) => {
