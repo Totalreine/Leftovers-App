@@ -1,25 +1,27 @@
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { authContext } from '../providers/authProvider';
 import axios from 'axios';
-
 
 function SignUpForm() {
   const [name, setName]= useState("");
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+  const { signUp} = useContext(authContext);
 
   const register = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8080/signup', {
+    axios.post('http://localhost:8081/signup', {
       email: emailReg,
       name: name,
       password: passwordReg
     })
     .then(function (response) {
       console.log(response);
+      signUp(emailReg,name);
     })
     .catch(function (error) {
       console.log(error);
