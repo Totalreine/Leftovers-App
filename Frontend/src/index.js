@@ -12,9 +12,7 @@ import SignUp from './routes/SignUp'
 import LeftoversProvider from './providers/LeftoversProvider';
 import RecipesProvider from './providers/RecipesProvider';
 import UserRecipesProvider from './providers/UsersRecipesProvider';
-
-
-
+import RecipeHistory from './routes/RecipeHistory';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "home",
     element: <Home />,
+  },
+  {
+    path: "/myrecipes",
+    element:<RecipeHistory/>
   },
   {
     path: "login",
