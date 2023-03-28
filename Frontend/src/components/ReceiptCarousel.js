@@ -21,6 +21,7 @@ function ReceiptCarousel(props) {
   const { addUserRecipes } = useContext(userRecipesContext);
 
   console.log("props.recipes[index]", props.recipes[index])
+  console.log("props.recipes", props.recipes)
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);

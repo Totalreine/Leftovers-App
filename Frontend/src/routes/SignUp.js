@@ -10,7 +10,7 @@ function SignUp() {
       <NavBar />
       <div className='row g-0'>
         <Col id='message-container'>
-          < div className='align-self-center' id='message'>
+          < div id='message'>
             <p>
               <b>Fit Cooking Back Into Your Schedule with </b>
             </p>

@@ -10,20 +10,20 @@ import './Recipe-History.css'
 function RecipeHistory() {
   return (
     <div className="recipe-history-div">
-      <NavBar/>
-      <Row> 
-        <Col md={2}>
-        <SideBar style={{height:"100%", width:"100%"}}/>
-        </Col>
-        <Col md={10}>
-        <MyRecipesElement style={{width:'100%'}}/>
-        <MyRecipesElement style={{width:'100%'}}/>
-        </Col>
-      </Row>
-   
-
+      <NavBar />
+      <main className="main">
+        <SideBar />
+        <section className="content col-9">
+        <Row>
+          <Col>
+            <MyRecipesElement />
+            <MyRecipesElement />
+          </Col>
+        </Row>
+        </section>
+      </main>
     </div>
-    
+
   )
 }
 
