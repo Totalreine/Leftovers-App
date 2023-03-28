@@ -16,7 +16,7 @@ const Ingredient = sequelize.define(
       allowNull: false,
     },
     amount: {
-      type: Sequelize.NUMBER,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     unit: {

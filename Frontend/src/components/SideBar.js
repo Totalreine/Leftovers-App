@@ -28,7 +28,7 @@ function SideBar() {
 
 
   return (
-    <div className="sideBar">
+    <div className="sideBar col-3">
       <div className="myLeftovers element">
         <span className="dot"></span>
         <span className="category">My Leftovers</span>
@@ -56,10 +56,6 @@ function SideBar() {
       <ul className="leftoversList">
         { leftoverElements }
       </ul>
-      <div className="myRecipies element">
-        <span className="dot"></span>
-        <span className="sideBarCategory">My Recipes</span>
-      </div>
     </div>
   );
 }

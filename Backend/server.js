@@ -1,18 +1,20 @@
+require("dotenv").config();
 const express = require("express");
 const cookieSession = require("cookie-session");
 const sequelize = require("./util/dbConnection");
 const Recipe = require("./models/recipes");
 const User = require("./models/users");
 const Ingredient = require("./models/ingredients");
-const Nutrient = require("./models/nutrients");
 const recipe_ingredient = require("./models/recipe_ingredient");
-const recipe_nutrient = require("./models/recipe_nutrient");
 const user_recipe = require("./models/user_recipe");
+// const cors = require('cors');
 
-const PORT = process.env.PORT || 8080;
+
+const PORT = process.env.DB_PORT || 8080;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json);
 
 app.use(
   cookieSession({
@@ -40,12 +42,10 @@ const userRoutes = require("./routes/user");
 
 app.use(authRoutes);
 app.use(recipeRoutes);
-app.use(userRoutes);
+app.use("/user", userRoutes);
 
 Ingredient.belongsToMany(Recipe, { through: recipe_ingredient });
 Recipe.belongsToMany(Ingredient, { through: recipe_ingredient });
-Nutrient.belongsToMany(Recipe, { through: recipe_nutrient });
-Recipe.belongsToMany(Nutrient, { through: recipe_nutrient });
 User.belongsToMany(Recipe, { through: user_recipe });
 Recipe.belongsToMany(User, { through: user_recipe });
 

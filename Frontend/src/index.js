@@ -6,16 +6,22 @@ import {
 } from "react-router-dom";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Login from './routes/Login';
+import Home from './routes/home';
+import SignUp from './routes/SignUp'
+import LeftoversProvider from './providers/LeftoversProvider';
+import RecipesProvider from './providers/RecipesProvider';
+import UserRecipesProvider from './providers/UsersRecipesProvider';
+
 
 import Home from "./routes/home";
-import Welcome from "./routes/welcome"
 import LeftoversProvider from "./providers/LeftoversProvider"
 import MyRecipes from './components/MyRecipes';
 import RecipeHistory from './routes/RecipeHistory';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Welcome />,
+    element: <SignUp />,
   },
   {
     path: "home",
@@ -25,14 +31,22 @@ const router = createBrowserRouter([
     path: "/myrecipes",
     element:<RecipeHistory/>
   }
+  {
+    path: "login",
+    element: <Login />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <RecipesProvider>
     <LeftoversProvider>
+    <UserRecipesProvider>
     <RouterProvider router={router} />
+    </UserRecipesProvider>
     </LeftoversProvider>
+    </RecipesProvider>
   </React.StrictMode>
 );
 
