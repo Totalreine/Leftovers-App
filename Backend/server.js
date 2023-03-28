@@ -10,7 +10,7 @@ const user_recipe = require("./models/user_recipe");
 // const cors = require('cors');
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.DB_PORT || 8080;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
