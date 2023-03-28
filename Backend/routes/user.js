@@ -2,7 +2,6 @@ const express = require("express");
 const Recipe = require("../models/recipes");
 const User = require("../models/users");
 const Ingredient = require("../models/ingredients");
-const Nutrient = require("../models/nutrients");
 const router = express.Router();
 
 router.get("/recipes", async (req, res) => {
@@ -54,8 +53,6 @@ router.post("/recipe", async (req, res) => {
     const user = await User.findByPk(userID);
 
     const ingredients = await Ingredient.bulkCreate(recipeIng);
-
-    const nutrients = await Nutrient.bulkCreate(recipeNut);
 
     const recipe = await Recipe.create({
       name,
