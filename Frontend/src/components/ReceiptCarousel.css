@@ -1,7 +1,7 @@
 .mainPicture {
-  width: 73%;
+  width: 70%;
   height: auto;
-  margin-left: 15%;
+  margin-left: 17%;
 }
 .mainRecipeInfo {
   display:flex;
@@ -51,4 +51,10 @@
   padding-top: 1.25rem;
   color: #4E4E4E;
   text-align: center;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
