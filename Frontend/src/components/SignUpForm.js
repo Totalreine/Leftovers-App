@@ -4,12 +4,15 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import axios from "axios";
 import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
   const [name, setName] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  const navigate = useNavigate();
 
   const register = (event) => {
     event.preventDefault();
@@ -19,7 +22,6 @@ function SignUpForm() {
       .post("http://localhost:8080/signup", data)
       .then(function (response) {
         console.log(response);
-        return redirect("/login");
       })
       .catch((error) => {
         console.log(error);
@@ -73,6 +75,7 @@ function SignUpForm() {
         <Button variant="primary" id="form-btn" type="submit">
           <p>Sign Up</p>
         </Button>
+        <Link to="/login"></Link>
       </div>
       <div className="link-div">
         <Link to="/login" className="link">
