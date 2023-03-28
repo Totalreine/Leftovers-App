@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Quicksand:wght@300&display=swap');
+.login-page, .signup-page{
+  width: 100%;
+  height: 100%; 
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url("/public/food-welcome-splash.jpg") no-repeat center center fixed ;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+
+.row{
+  width: 100%;
+  height: 100%;
+
+}
+
+#login-form, #signup-form{
+  border-style:linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)) ;
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));
+
+}
+
+#message {
+  text-align: center;
+  font-size: 35px;
+  color: black;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#message-container{
+  display: flex;
+  justify-content: center;
+}
+
+
+.form-card{
+  border-style:linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)) ;
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));
+}
+.form-label, .link-div{
+  text-align: center;
+}
+
+.form{
+  margin: 150px;
+}
+
+.lglabel, .btn-div{
+  display: flex;
+  justify-content: center;
+}
+.btn-div{
+  padding-top: 2em;
+}
+p{
+  margin-top:1rem;
+}
+#form-btn {
+  background-color: #F29544;
+  border-color:#F29544;
+  border-radius: 13px;
+  width: 100%;
+  height: 40px;
+  padding: 0px;
+  
+}
