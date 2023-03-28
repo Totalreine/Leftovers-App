@@ -11,6 +11,10 @@ const Recipe = sequelize.define(
       unique: true,
       primaryKey: true,
     },
+    apiId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
     title: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -19,11 +23,11 @@ const Recipe = sequelize.define(
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
-    glutenfree: {
+    glutenFree: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
-    dairyfree: {
+    dairyFree: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
@@ -31,23 +35,11 @@ const Recipe = sequelize.define(
       type: Sequelize.BOOLEAN,
       allowNull: false,
     },
-    readyinminutes: {
+    readyInMinutes: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
     image: {
-      type: Sequelize.TEXT,
-      allowNull: false,
-    },
-    missedIngredients: {
-      type: Sequelize.TEXT,
-      allowNull: false,
-    },
-    usedIngredients: {
-      type: Sequelize.TEXT,
-      allowNull: false,
-    },
-    unusedIngredients: {
       type: Sequelize.TEXT,
       allowNull: false,
     },

@@ -44,11 +44,10 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
 
         let instructions = [];
 
-        if (recipe["analyzedInstructions"] === []) {
+        if (recipe["analyzedInstructions"] && recipe["analyzedInstructions"].lenght > 0) {
         const analysedInstructions = recipe["analyzedInstructions"][0]["steps"]
         instructions = formatSteps.formatSteps(analysedInstructions)
         }
-        
         
         const newRecipe = {
           apiId: recipe["id"],

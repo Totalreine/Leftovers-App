@@ -125,8 +125,8 @@ function ReceiptCarousel(props) {
             ref={ref}
             interval={null}
           >
-            <Filter />
             {recipesElements}
+          <Filter />
           </Carousel>
           {props.recipes[index] && <div className="buttons">
             <Col xs="auto"><Button className="reject btn" onClick={onRejectClick}><Icon path={mdiClose} size={1.5} /></Button></Col>
@@ -137,14 +137,14 @@ function ReceiptCarousel(props) {
           {props.recipes[index] &&
             <>
               <h4> Cooking time: {props.recipes[index]["readyInMinutes"]} minutes</h4>
-              <hr class="dotted"></hr>
+              <hr className="dotted"></hr>
             </>
           }
           {props.recipes[index] && <div className="tags"> < SpecialTags /> </div>}
-          {props.recipes[index] && (props.recipes[index].dairyFree || props.recipes[index].glutenFree || props.recipes[index].vegan || props.recipes[index].vegetarian) ? <hr class="dotted"></hr> : <div></div>}
+          {props.recipes[index] && (props.recipes[index].dairyFree || props.recipes[index].glutenFree || props.recipes[index].vegan || props.recipes[index].vegetarian) ? <hr className="dotted"></hr> : <div></div>}
           {props.recipes[index] && < UsedIngredientsTitle />}
           {props.recipes[index] && < UsedIngredients />}
-          {props.recipes[index] && props.recipes[index].usedIngredients.length > 0 ? <hr class="dotted"></hr> : <div></div>}
+          {props.recipes[index] && props.recipes[index].usedIngredients.length > 0 ? <hr className="dotted"></hr> : <div></div>}
           {props.recipes[index] && < MissedIngredientsTitle />}
           {props.recipes[index] && < MissedIngredients />}
         </Col>

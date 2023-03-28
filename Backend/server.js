@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cookieSession = require("cookie-session");
 const sequelize = require("./util/dbConnection");
+const bodyParser = require("body-parser");
 const Recipe = require("./models/recipes");
 const User = require("./models/users");
 const Ingredient = require("./models/ingredients");
@@ -12,6 +13,9 @@ const user_recipe = require("./models/user_recipe");
 
 const PORT = process.env.DB_PORT || 8080;
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
