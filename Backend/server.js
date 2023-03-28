@@ -13,6 +13,7 @@ const PORT = process.env.DB_PORT || 8080;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 app.use(
