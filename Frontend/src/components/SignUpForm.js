@@ -52,7 +52,7 @@ function SignUpForm() {
         <Form.Control type="password" value ={confirmPass} onChange= {(e) => {setConfirmPass(e.target.value)}} placeholder="Confirm password"/>
       </Form.Group>
       <div className= "btn-div">
-      <Button variant="primary"  type="submit">
+      <Button variant="primary" id="form-btn" type="submit">
         <p>Sign Up</p>
       </Button>
       </div>

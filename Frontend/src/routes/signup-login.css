@@ -58,7 +58,7 @@
 p{
   margin-top:1rem;
 }
-.btn-primary{
+#form-btn {
   background-color: #F29544;
   border-color:#F29544;
   border-radius: 13px;

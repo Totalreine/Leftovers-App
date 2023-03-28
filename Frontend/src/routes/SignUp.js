@@ -1,7 +1,7 @@
 import SignUpForm from "../components/SignUpForm";
 import Col from 'react-bootstrap/Col';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./SignUp.css"
+import "./signup-login.css"
 import NavBar from '../components/NavBar';
 
 function SignUp() {
