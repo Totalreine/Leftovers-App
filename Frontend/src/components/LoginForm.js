@@ -1,21 +1,15 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { authContext } from 'providers/AuthProvider';
-import { useContext, useState } from "react";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(authContext);
-  const onSubmit = function(event) {
- 
-    event.preventDefault();
-    email && login(email, password);
-  };
 
-  const loginUser = () => {
+  const loginUser = (event) => {
+    event.preventDefault();
     axios.post('/login', {
       email: email,
       password: password
@@ -41,7 +35,7 @@ function LoginForm() {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" value={password} onChange={(e)=> {setEmail(e.target.value)}} placeholder="Password"/>
+        <Form.Control type="password" value={password} onChange={(e)=> {setPassword(e.target.value)}} placeholder="Password"/>
       </Form.Group>
       <div className= "btn-div">
       <Button variant="primary" id="form-btn" type="submit">
