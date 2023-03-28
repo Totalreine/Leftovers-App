@@ -59,7 +59,7 @@
 .leftoverListItem {
   display: flex;
   margin-inline: auto;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
