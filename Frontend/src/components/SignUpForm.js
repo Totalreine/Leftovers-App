@@ -14,9 +14,9 @@ function SignUpForm() {
   const register = (event) => {
     event.preventDefault();
     axios.post('http://localhost:8080/signup', {
-      email: {emailReg},
-      name: {name},
-      password: {passwordReg}
+      email: emailReg,
+      name: name,
+      password: passwordReg
     })
     .then(function (response) {
       console.log(response);
