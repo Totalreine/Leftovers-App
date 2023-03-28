@@ -12,11 +12,6 @@ import SignUp from './routes/SignUp'
 import LeftoversProvider from './providers/LeftoversProvider';
 import RecipesProvider from './providers/RecipesProvider';
 import UserRecipesProvider from './providers/UsersRecipesProvider';
-
-
-import Home from "./routes/home";
-import LeftoversProvider from "./providers/LeftoversProvider"
-import MyRecipes from './components/MyRecipes';
 import RecipeHistory from './routes/RecipeHistory';
 const router = createBrowserRouter([
   {
@@ -30,7 +25,7 @@ const router = createBrowserRouter([
   {
     path: "/myrecipes",
     element:<RecipeHistory/>
-  }
+  },
   {
     path: "login",
     element: <Login />,
