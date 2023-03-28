@@ -5,7 +5,7 @@ const router = express.Router();
 const spoonacularApi = require("./helpers/spoonacularAPI");
 
 router.get("/recipes", (req, res) => {
-  const { ingredients, diet, mealtype, intolerances } = req.params;
+  const { ingredients, diet, mealtype, intolerances } = req.query;
 
   spoonacularApi
     .newRecipes(ingredients, diet, mealtype, intolerances)

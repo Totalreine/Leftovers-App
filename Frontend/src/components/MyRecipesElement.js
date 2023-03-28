@@ -8,6 +8,7 @@ import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
+import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
 
 function MyRecipesElement() {
 
@@ -20,54 +21,54 @@ function MyRecipesElement() {
       </Row>
     );
   }
-  return (
+  return ( 
     <Accordion defaultActiveKey="0">
-      <div className="recipeContainer">
-        <RecipieToggle />
-        <Accordion.Collapse >
-        <Container className="instructions">
-        <Row>
-          <Col>
-          <p> ⅔ cup soy sauce
-          ¼ cup brown sugar
-          ½ teaspoon ground ginger
-          1 pinch red pepper flakes, or to taste
-          2 tablespoons water
-          2 tablespoons cornstarch
-          2 teaspoons vegetable oil, or to taste
-          3 skinless, boneless chicken breast halves, cut into chunks
-          1 onion, sliced
-          </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <p> ⅔ cup soy sauce
-          ¼ cup brown sugar
-          ½ teaspoon ground ginger
-          1 pinch red pepper flakes, or to taste
-          2 tablespoons water
-          2 tablespoons cornstarch
-          2 teaspoons vegetable oil, or to taste
-          3 skinless, boneless chicken breast halves, cut into chunks
-          1 onion, sliced
-          3 cups broccoli florets
-          ⅔ cup soy sauce
-          ¼ cup brown sugar
-          ½ teaspoon ground ginger
-          1 pinch red pepper flakes, or to taste
-          2 tablespoons water
-          2 tablespoons cornstarch
-          2 teaspoons vegetable oil, or to taste
-          3 skinless, boneless chicken breast halves, cut into chunks
-          1 onion, sliced
-          3 cups broccoli florets</p>
-          </Col>
-        </Row>
-        </Container>
-        </Accordion.Collapse>
-     </div>
-    </Accordion>
+    <div className="recipeContainer">
+      <RecipieToggle />
+      <Accordion.Collapse >
+      <Container className="instructions" >
+      <Row>
+        <Col>
+        <p> ⅔ cup soy sauce
+        ¼ cup brown sugar
+        ½ teaspoon ground ginger
+        1 pinch red pepper flakes, or to taste
+        2 tablespoons water
+        2 tablespoons cornstarch
+        2 teaspoons vegetable oil, or to taste
+        3 skinless, boneless chicken breast halves, cut into chunks
+        1 onion, sliced
+        </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <p> ⅔ cup soy sauce
+        ¼ cup brown sugar
+        ½ teaspoon ground ginger
+        1 pinch red pepper flakes, or to taste
+        2 tablespoons water
+        2 tablespoons cornstarch
+        2 teaspoons vegetable oil, or to taste
+        3 skinless, boneless chicken breast halves, cut into chunks
+        1 onion, sliced
+        3 cups broccoli florets
+        ⅔ cup soy sauce
+        ¼ cup brown sugar
+        ½ teaspoon ground ginger
+        1 pinch red pepper flakes, or to taste
+        2 tablespoons water
+        2 tablespoons cornstarch
+        2 teaspoons vegetable oil, or to taste
+        3 skinless, boneless chicken breast halves, cut into chunks
+        1 onion, sliced
+        3 cups broccoli florets</p>
+        </Col>
+      </Row>
+      </Container>
+      </Accordion.Collapse>
+   </div>
+  </Accordion>
   )
 }
 

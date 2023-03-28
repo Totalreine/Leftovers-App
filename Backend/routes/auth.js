@@ -28,7 +28,6 @@ router.post("/signup", (req, res) => {
       console.log(err);
       res.send(err);
     });
-    res.send(err);
 
 });
 

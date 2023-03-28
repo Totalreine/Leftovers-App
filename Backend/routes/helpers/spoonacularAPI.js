@@ -42,8 +42,12 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
         const usedIngredients = formatIngredients.formatIngredients(recipe["usedIngredients"]);
         const unusedIngredients = formatIngredients.formatIngredients(recipe["unusedIngredients"]);
 
+        let instructions = [];
+
+        if (recipe["analyzedInstructions"] === []) {
         const analysedInstructions = recipe["analyzedInstructions"][0]["steps"]
-        const instructions = formatSteps.formatSteps(analysedInstructions)
+        instructions = formatSteps.formatSteps(analysedInstructions)
+        }
         
         
         const newRecipe = {
