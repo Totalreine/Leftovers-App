@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cookieSession = require("cookie-session");
 const sequelize = require("./util/dbConnection");
@@ -6,11 +7,14 @@ const User = require("./models/users");
 const Ingredient = require("./models/ingredients");
 const recipe_ingredient = require("./models/recipe_ingredient");
 const user_recipe = require("./models/user_recipe");
+// const cors = require('cors');
 
-const PORT = process.env.DB_PORT || 8080;
+
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json);
 
 app.use(
   cookieSession({
@@ -35,7 +39,6 @@ app.use((req, res, next) => {
 const authRoutes = require("./routes/auth");
 const recipeRoutes = require("./routes/recipe");
 const userRoutes = require("./routes/user");
-require("dotenv").config();
 
 app.use(authRoutes);
 app.use(recipeRoutes);

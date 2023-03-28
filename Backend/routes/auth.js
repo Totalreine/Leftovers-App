@@ -3,15 +3,17 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
 
-router.get("/signup", (req, res) => {});
 
-router.get("/login", (req, res) => {});
+router.get("/", (req, res) => {
+  res.redirect('/');
+ });
+
+router.get("/login", (req, res) => { });
 
 router.post("/signup", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
-
   const hashedPassword = bcrypt.hashSync(password, 10);
 
   User.create({
@@ -20,12 +22,14 @@ router.post("/signup", (req, res) => {
     password: hashedPassword,
   })
     .then((data) => {
-      console.log(data);
-      res.json("User created");
+      res.redirect('/login');
     })
     .catch((err) => {
       console.log(err);
+      res.send(err);
     });
+    res.send(err);
+
 });
 
 router.post("/login", (req, res) => {
