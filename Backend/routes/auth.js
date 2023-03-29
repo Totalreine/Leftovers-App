@@ -3,12 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
 
+router.get("/", (req, res) => {});
 
-router.get("/", (req, res) => {
-  res.redirect('/');
- });
-
-router.get("/login", (req, res) => { });
+router.get("/login", (req, res) => {});
 
 router.post("/signup", (req, res) => {
   const name = req.body.name;
@@ -22,14 +19,11 @@ router.post("/signup", (req, res) => {
     password: hashedPassword,
   })
     .then((data) => {
-      res.redirect('/login');
+      res.status(201).json("it works");
     })
     .catch((err) => {
-      console.log(err);
-      res.send(err);
+      res.status(500);
     });
-    res.send(err);
-
 });
 
 router.post("/login", (req, res) => {
@@ -45,16 +39,19 @@ router.post("/login", (req, res) => {
       if (user) {
         if (bcrypt.compareSync(password, user.dataValues.password)) {
           req.session.userID = user.dataValues.id;
-          res.json("user loggedin");
+          res.json({
+            userid: user.dataValues.id,
+            username: user.dataValues.name,
+          });
         } else {
-          res.json("wrong password");
+          res.status(401).json("wrong password");
         }
       } else {
-        res.json("wrong email or user not created");
+        res.status(401).json("wrong email or user not created");
       }
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500);
     });
 });
 

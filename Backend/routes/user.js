@@ -11,7 +11,7 @@ router.get("/recipes", async (req, res) => {
     const recipes = await user.getRecipes();
     res.json(recipes);
   } catch (err) {
-    console.log(err);
+    res.status(500);
   }
 });
 
@@ -25,7 +25,7 @@ router.get("/recipe/:id", async (req, res) => {
     });
     res.json(recipe);
   } catch (err) {
-    console.log(err);
+    res.status(500);
   }
 });
 

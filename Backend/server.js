@@ -8,8 +8,6 @@ const User = require("./models/users");
 const Ingredient = require("./models/ingredients");
 const recipe_ingredient = require("./models/recipe_ingredient");
 const user_recipe = require("./models/user_recipe");
-// const cors = require('cors');
-
 
 const PORT = process.env.DB_PORT || 8080;
 const app = express();
@@ -19,7 +17,6 @@ app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(
   cookieSession({
     name: "session",

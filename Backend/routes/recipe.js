@@ -16,8 +16,7 @@ router.get("/recipes", (req, res) => {
       res.json(data);
     })
     .catch((e) => {
-      console.error(e);
-      res.send(e);
+      res.status(500);
     });
 });
 
@@ -36,31 +35,36 @@ router.post("/savedrecipes", (req, res) => {
     unusedIngredients,
     instructions,
   } = req.body;
+  console.log("body", req.body);
+  const instructionsString =
+    formatInstructions.formatInstructions(instructions);
 
-  const instructionsString = formatInstructions.formatInstructions(instructions);
-
-  Recipe.create({
-    apiId,
+  const recipe = Recipe.create({
     title,
-    readyInMinutes,
-    image,
-    vegetarian,
     vegan,
     glutenFree,
     dairyFree,
-    instructions: instructionsString
+    vegetarian,
+    readyInMinutes,
+    image,
+    instructions: instructionsString,
+    apiId,
   })
     .then(() => {
-      return Ingredient.bulkCreate(missedIngredients.concat(usedIngredients, unusedIngredients))      
+      console.log("recipe", recipe);
+      return Ingredient.bulkCreate(
+        missedIngredients.concat(usedIngredients, unusedIngredients)
+      );
     })
-    .then(() => {
+    .then((data) => {
+      recipe.addIngredient(data);
       res.json("done");
     })
     .catch((e) => {
       console.error(e);
       res.send(e);
     });
-})
+});
 
 router.get("/savedrecipes", (req, res) => {
   Recipe.findAll()
@@ -70,41 +74,37 @@ router.get("/savedrecipes", (req, res) => {
     .catch((e) => {
       console.log(e);
       res.send(e);
-    })
-})
+    });
+});
 
 router.get("/ingredients", (req, res) => {
-  const {
-    id
-  } = req.query;
+  const { id } = req.query;
 
-  console.log(req.query)
+  console.log(req.query);
 
   Ingredient.findAll({
     where: {
-      "recipe_id": id,
-    }
+      recipe_id: id,
+    },
   })
     .then((data) => {
       res.json(data);
     })
     .catch((e) => {
       res.send(e);
-    })
-})
+    });
+});
 
 router.delete("/savedrecipes/:id", (req, res) => {
-  const {
-    id
-  } = req.params;
+  const { id } = req.params;
 
-  console.log(req.params)
-  console.log(id)
+  console.log(req.params);
+  console.log(id);
 
   Recipe.destroy({
     where: {
-      "id": id,
-    }
+      id: id,
+    },
   })
     .then((data) => {
       res.json(data);
@@ -112,7 +112,7 @@ router.delete("/savedrecipes/:id", (req, res) => {
     .catch((e) => {
       console.log(e);
       res.send(e);
-    })
-})
+    });
+});
 
 module.exports = router;
