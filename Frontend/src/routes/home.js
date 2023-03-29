@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import ReceiptCarousel from "../components/ReceiptCarousel";
-import MyRecipes from "../components/MyRecipes"
-import ShowSpinner from "../components/Spinner"
+import ShowSpinner from "../components/Spinner";
 import { Fragment, useContext, useEffect, useState } from "react";
 
 import { leftoversContext } from '../providers/LeftoversProvider';
@@ -19,7 +18,6 @@ function Home() {
 
   let leftoversNames = Object.keys(leftovers);
   const formattedLeftovers = leftoversNames.join();
-  console.log(leftoversNames)
 
   useEffect(() => {
     setShowSpinner(true);
@@ -38,9 +36,6 @@ function Home() {
           <header className="carousel">
             { showSpinner ? <ShowSpinner /> : <ReceiptCarousel recipes={recipes} />}
           </header>
-          <section className="myRecipes">
-            <MyRecipes />
-          </section>
         </section>
       </main>
     </Fragment>

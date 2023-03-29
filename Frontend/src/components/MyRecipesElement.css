@@ -1,7 +1,4 @@
 .recipeElement {
-  margin-bottom: 3vh;
-  background-color: #ffff;
-  margin-top: 3vh;
   display: flex;
   align-items: center;
 }
@@ -24,6 +21,19 @@
   --bs-gutter-x: 0;
   --bs-gutter-y: 0;
 }
+
 .instructions {
   background-color: #ffff;
+}
+
+.recipeToggle {
+  display: flex;
+  align-items: center;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  background-color: #ffff;
+}
+
+.deleteReceipt {
+  margin-right: 5vh;
 }

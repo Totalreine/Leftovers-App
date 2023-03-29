@@ -1,4 +1,7 @@
-import "./MyRecipesElement.css"
+import "./MyRecipesElement.css";
+import { useContext, useEffect } from 'react';
+import { userRecipesContext } from "../providers/UsersRecipesProvider";
+import { ingredientsContext } from "../providers/IngredientsProvider";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,68 +10,61 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 
 import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
-import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
+import { mdiClose, mdiCircleSmall } from '@mdi/js';
 
-function MyRecipesElement() {
+function MyRecipesElement(props) {
+  const { deleteUserRecipes } = useContext(userRecipesContext);
+  const { getIngredients, ingredients } = useContext(ingredientsContext);
+
+  let ingredientElements = [];
+  for (const ingredientElement in ingredients) {
+    const ingredient = ingredients[ingredientElement];
+    ingredientElements.push(<div><Icon path={mdiCircleSmall} size={1} /> {ingredient.name} ( {ingredient.amount} {ingredient.unit} )</div>);
+  }
+
+  const instructionsSteps = props.recipe.instructions.split('   ');
+  let instructionsElements = [];
+  for (let i = 1; i < instructionsSteps.length; i += 2) {
+    instructionsElements.push(
+      <div> <b>Step {instructionsSteps[i]}</b>: {instructionsSteps[i + 1]} </div>)
+  }
+
+
+  useEffect(() => {
+    getIngredients(props.recipe.id)
+  }, [])
 
   function RecipieToggle() {
     return (
       <Row className='recipeElement' onClick={useAccordionButton()}>
-      <Col xs="auto"><img src="https://www.allrecipes.com/thmb/yMAQ7gdoDN074lN-hsSb20ZmOUY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/4535439-564adcef998c47bebfcb6d9c5aa2a3df.jpg" className="smallPhoto"/></Col>
-      <Col xs={10}><h3 className="recipeName">Spinach and Strawberry Salad</h3></Col>
-      <Col xs="auto"><Icon path={mdiClose} size={1} className="deleteReceipt"/></Col>
+        <Col xs="auto"><img src={props.recipe.image} className="smallPhoto" /></Col>
+        <Col xs={8}><h3 className="recipeName">{props.recipe.title}</h3></Col>
       </Row>
     );
   }
-  return ( 
+  return (
     <Accordion defaultActiveKey="0">
-    <div className="recipeContainer">
-      <RecipieToggle />
-      <Accordion.Collapse >
-      <Container className="instructions" >
-      <Row>
-        <Col>
-        <p> ⅔ cup soy sauce
-        ¼ cup brown sugar
-        ½ teaspoon ground ginger
-        1 pinch red pepper flakes, or to taste
-        2 tablespoons water
-        2 tablespoons cornstarch
-        2 teaspoons vegetable oil, or to taste
-        3 skinless, boneless chicken breast halves, cut into chunks
-        1 onion, sliced
-        </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        <p> ⅔ cup soy sauce
-        ¼ cup brown sugar
-        ½ teaspoon ground ginger
-        1 pinch red pepper flakes, or to taste
-        2 tablespoons water
-        2 tablespoons cornstarch
-        2 teaspoons vegetable oil, or to taste
-        3 skinless, boneless chicken breast halves, cut into chunks
-        1 onion, sliced
-        3 cups broccoli florets
-        ⅔ cup soy sauce
-        ¼ cup brown sugar
-        ½ teaspoon ground ginger
-        1 pinch red pepper flakes, or to taste
-        2 tablespoons water
-        2 tablespoons cornstarch
-        2 teaspoons vegetable oil, or to taste
-        3 skinless, boneless chicken breast halves, cut into chunks
-        1 onion, sliced
-        3 cups broccoli florets</p>
-        </Col>
-      </Row>
-      </Container>
-      </Accordion.Collapse>
-   </div>
-  </Accordion>
+      <div className="recipeContainer">
+        <div className="recipeToggle">
+          <RecipieToggle />
+          <Icon path={mdiClose} size={1.2} className="deleteReceipt" onClick={() => deleteUserRecipes(props.recipe.id)} />
+        </div>
+        <Accordion.Collapse >
+          <Container className="instructions" >
+            <Row>
+              <Col>
+                {ingredientElements}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {instructionsElements}
+              </Col>
+            </Row>
+          </Container>
+        </Accordion.Collapse>
+      </div>
+    </Accordion>
   )
 }
 

@@ -32,22 +32,18 @@ router.get("/recipe/:id", async (req, res) => {
 router.post("/recipe", async (req, res) => {
   const userID = req.session.userID;
   const {
-    name,
-    vegan,
-    glutenfree,
-    dairyfree,
-    veryhealthy,
-    vegetarian,
-    readyinminutes,
-    servings,
-    sourceurl,
+    apiId,
+    title,
+    readyInMinute,
     image,
-    summary,
-    weightperserving,
-    instructions,
-    cuisine,
-    recipeIng,
-    recipeNut,
+    vegetarian,
+    vegan,
+    glutenFree,
+    dairyFree,
+    missedIngredients,
+    usedIngredients,
+    unusedIngredients,
+    instructions
   } = req.body;
   try {
     const user = await User.findByPk(userID);
@@ -55,23 +51,20 @@ router.post("/recipe", async (req, res) => {
     const ingredients = await Ingredient.bulkCreate(recipeIng);
 
     const recipe = await Recipe.create({
-      name,
-      vegan,
-      glutenfree,
-      dairyfree,
-      veryhealthy,
-      vegetarian,
-      readyinminutes,
-      servings,
-      sourceurl,
+      apiId,
+      title,
+      readyInMinute,
       image,
-      summary,
-      weightperserving,
-      instructions,
-      cuisine,
+      vegetarian,
+      vegan,
+      glutenFree,
+      dairyFree,
+      missedIngredients,
+      usedIngredients,
+      unusedIngredients,
+      instructions
     });
 
-    // await recipe.addNutrient(nutrients);
     await recipe.addIngredient(ingredients);
     await user.addRecipe(recipe);
     res.json("done");

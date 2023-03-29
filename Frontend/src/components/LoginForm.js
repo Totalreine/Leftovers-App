@@ -40,7 +40,7 @@ function LoginForm() {
   return (
     <Form className="form" onSubmit={loginUser}>
       <div className="form-label">
-        <h5>Login</h5>
+        <h4>Login</h4>
       </div>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -75,7 +75,7 @@ function LoginForm() {
       </div>
       <div className="link-div">
         <Link to="/" className="link">
-          Don't already have an account? Click here to sign up.
+          Don't already have an account? Click here to <b>Sign Up.</b>
         </Link>
       </div>
     </Form>

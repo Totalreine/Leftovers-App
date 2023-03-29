@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import "./ReceiptCarousel.css"
 
 import Icon from '@mdi/react';
@@ -12,16 +12,12 @@ import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import RecipesAlert from './RecipesAlert';
 
-import { useContext } from 'react';
 import { userRecipesContext } from "../providers/UsersRecipesProvider";
 
 function ReceiptCarousel(props) {
   const ref = useRef(null);
   const [index, setIndex] = useState(0);
   const { addUserRecipes } = useContext(userRecipesContext);
-
-  console.log("props.recipes[index]", props.recipes[index])
-  console.log("props.recipes", props.recipes)
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -30,10 +26,9 @@ function ReceiptCarousel(props) {
   const onRejectClick = () => {
     ref.current.prev();
   };
-  
+
   const onLikeClick = () => {
-    // index && addRecipe(objrecipe)
-    console.log(`I liked ${props.recipes[index].title}`)
+    addUserRecipes(props.recipes[index])
     ref.current.next();
   };
 
@@ -42,7 +37,7 @@ function ReceiptCarousel(props) {
   for (const recipe of props.recipes) {
     recipesElements.push(
       <Carousel.Item key={recipe.id}>
-        <img src={recipe.image} className="mainPicture" width="200"/>
+        <img src={recipe.image} className="mainPicture" width="200" />
         <Carousel.Caption>
           <h3> {recipe.title} </h3>
         </Carousel.Caption>
@@ -86,7 +81,7 @@ function ReceiptCarousel(props) {
 
     return (
       usedIngredients.map(usedI =>
-          <div> <Icon path={mdiCircleSmall} size={1} /> {usedI.name} ( {usedI.amount} {usedI.unit} )</div>
+        <div> <Icon path={mdiCircleSmall} size={1} /> {usedI.name} ( {usedI.amount} {usedI.unit} )</div>
       ))
   };
 
@@ -105,18 +100,17 @@ function ReceiptCarousel(props) {
     }
 
     const missedIngredients = props.recipes[index].missedIngredients;
-    
+
     return (
-    missedIngredients.map(missedI =>
+      missedIngredients.map(missedI =>
         <div> <Icon path={mdiCircleSmall} size={1} /> {missedI.name} ( {missedI.amount} {missedI.unit} )</div>
-    ))
+      ))
   };
 
   return (
     <Container>
-      <Filter />
-      {props.recipes[index] == undefined  && < RecipesAlert />}
-      {props.recipes[index] && props.recipes[index] !== {}  && <Row className="mainRecipeInfo">
+      {props.recipes[index] == undefined && < RecipesAlert />}
+      {props.recipes[index] && props.recipes[index] !== {} && <Row className="mainRecipeInfo">
         <Col xs={8}>
           <Carousel
             activeIndex={index}
@@ -127,24 +121,25 @@ function ReceiptCarousel(props) {
             interval={null}
           >
             {recipesElements}
+          <Filter />
           </Carousel>
           {props.recipes[index] && <div className="buttons">
             <Col xs="auto"><Button className="reject btn" onClick={onRejectClick}><Icon path={mdiClose} size={1.5} /></Button></Col>
             <Col xs="auto"><Button className="accept btn" onClick={onLikeClick}><Icon path={mdiHeartOutline} size={1.3} /></Button></Col>
           </div>}
         </Col>
-        <Col className="ingredients" xs={4}>
-          {props.recipes[index] && 
-          <>
-          <h4> Cooking time: {props.recipes[index]["readyInMinutes"]} minutes</h4>
-          <hr class="dotted"></hr>
-          </>
+        <Col className="ingredients" xs={3}>
+          {props.recipes[index] &&
+            <>
+              <h4> Cooking time: {props.recipes[index]["readyInMinutes"]} minutes</h4>
+              <hr className="dotted"></hr>
+            </>
           }
           {props.recipes[index] && <div className="tags"> < SpecialTags /> </div>}
-          {props.recipes[index] && (props.recipes[index].dairyFree || props.recipes[index].glutenFree || props.recipes[index].vegan || props.recipes[index].vegetarian) ? <hr class="dotted"></hr> : <div></div>}
+          {props.recipes[index] && (props.recipes[index].dairyFree || props.recipes[index].glutenFree || props.recipes[index].vegan || props.recipes[index].vegetarian) ? <hr className="dotted"></hr> : <div></div>}
           {props.recipes[index] && < UsedIngredientsTitle />}
           {props.recipes[index] && < UsedIngredients />}
-          {props.recipes[index] && props.recipes[index].usedIngredients.length > 0 ? <hr class="dotted"></hr> : <div></div>}
+          {props.recipes[index] && props.recipes[index].usedIngredients.length > 0 ? <hr className="dotted"></hr> : <div></div>}
           {props.recipes[index] && < MissedIngredientsTitle />}
           {props.recipes[index] && < MissedIngredients />}
         </Col>
