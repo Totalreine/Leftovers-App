@@ -1,4 +1,6 @@
-import "./MyRecipesElement.css"
+import "./MyRecipesElement.css";
+import {useContext } from 'react';
+import { userRecipesContext } from "../providers/UsersRecipesProvider";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,16 +10,16 @@ import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
-import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
 
-function MyRecipesElement() {
+function MyRecipesElement(props) {
+  const { deleteUserRecipes} = useContext(userRecipesContext);
 
   function RecipieToggle() {
     return (
       <Row className='recipeElement' onClick={useAccordionButton()}>
-      <Col xs="auto"><img src="https://www.allrecipes.com/thmb/yMAQ7gdoDN074lN-hsSb20ZmOUY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/4535439-564adcef998c47bebfcb6d9c5aa2a3df.jpg" className="smallPhoto"/></Col>
+      <Col xs="auto"><img src={props.image} className="smallPhoto"/></Col>
       <Col xs={10}><h3 className="recipeName">Spinach and Strawberry Salad</h3></Col>
-      <Col xs="auto"><Icon path={mdiClose} size={1} className="deleteReceipt"/></Col>
+      <Col xs="auto"><Icon path={mdiClose} size={1} className="deleteReceipt" onClick={deleteUserRecipes}/></Col>
       </Row>
     );
   }

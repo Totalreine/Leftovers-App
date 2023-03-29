@@ -1,3 +1,5 @@
+import { useContext, useEffect } from 'react';
+
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import NavBar from "../components/NavBar";
@@ -5,9 +7,22 @@ import SideBar from "../components/SideBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyRecipesElement from "../components/MyRecipesElement";
 import './Recipe-History.css'
+import { userRecipesContext } from "../providers/UsersRecipesProvider";
 
 
 function RecipeHistory() {
+  const { userRecipes, getSavedRecipes } = useContext(userRecipesContext);
+
+  let recipesElements = [];
+  for (let recipeElement in userRecipes) {
+    const recipe = userRecipes[recipeElement];
+    recipesElements.push(<MyRecipesElement key={recipe.id} recipe={recipe} />);
+  }
+
+  useEffect(() => {
+    getSavedRecipes()   
+  }, [userRecipes])
+  
   return (
     <div className="recipe-history-div">
       <NavBar />
@@ -16,8 +31,7 @@ function RecipeHistory() {
         <section className="content col-9">
         <Row>
           <Col>
-            <MyRecipesElement />
-            <MyRecipesElement />
+            { recipesElements }
           </Col>
         </Row>
         </section>

@@ -34,11 +34,13 @@ router.post("/save", (req, res) => {
     missedIngredients,
     usedIngredients,
     unusedIngredients,
-    instructions
+    instructions,
   } = req.body;
 
-  console.log(instructions)
-  console.log(req.body)
+  console.log("instructions", instructions)
+  console.log("body", req.body)
+
+
 
   const instructionsString = formatInstructions.formatInstructions(instructions);
 
@@ -53,15 +55,44 @@ router.post("/save", (req, res) => {
     dairyFree,
     instructions: instructionsString
   })
-  .then(() => {
-    Ingredient.bulkCreate(missedIngredients.concat(usedIngredients, unusedIngredients))
-    res.json("done")
-  })
-  .catch((e) => {
-    console.error(e);
-    res.send(e);
-  });
+    .then(() => {
+      Ingredient.bulkCreate(missedIngredients.concat(usedIngredients, unusedIngredients))
+      res.json("done")
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+})
 
+router.get("/save", (req, res) => {
+  Recipe.findAll()
+    .then(() => {
+      res.json("user recipes")
+    })
+    .catch((e) => {
+      console.log(e);
+      res.send(e);
+    })
+})
+
+router.delete("/save/:id", (req, res) => {
+  const {
+    id
+  } = req.body;
+
+  Recipe.destroy({
+    where: {
+      id: id,
+    }
+  })
+    .then(() => {
+      res.json("deleted")
+    })
+    .catch((e) => {
+      console.log(e);
+      res.send(e);
+    })
 })
 
 module.exports = router;

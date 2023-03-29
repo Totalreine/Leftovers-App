@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import "./ReceiptCarousel.css"
 
 import Icon from '@mdi/react';
@@ -12,16 +12,12 @@ import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import RecipesAlert from './RecipesAlert';
 
-import { useContext } from 'react';
 import { userRecipesContext } from "../providers/UsersRecipesProvider";
 
 function ReceiptCarousel(props) {
   const ref = useRef(null);
   const [index, setIndex] = useState(0);
   const { addUserRecipes } = useContext(userRecipesContext);
-
-  console.log("props.recipes[index]", props.recipes[index])
-  console.log("props.recipes", props.recipes)
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -32,8 +28,7 @@ function ReceiptCarousel(props) {
   };
 
   const onLikeClick = () => {
-    // index && addRecipe(objrecipe)
-    console.log(`I liked ${props.recipes[index].title}`)
+    index && addUserRecipes(props.recipes[index])
     ref.current.next();
   };
 

@@ -18,7 +18,6 @@ function Home() {
 
   let leftoversNames = Object.keys(leftovers);
   const formattedLeftovers = leftoversNames.join();
-  console.log(leftoversNames)
 
   useEffect(() => {
     setShowSpinner(true);

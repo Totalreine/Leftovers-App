@@ -42,12 +42,15 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
         const usedIngredients = formatIngredients.formatIngredients(recipe["usedIngredients"]);
         const unusedIngredients = formatIngredients.formatIngredients(recipe["unusedIngredients"]);
 
-        let instructions = [];
+        let instructions;
 
-        if (recipe["analyzedInstructions"] && recipe["analyzedInstructions"].lenght > 0) {
-        const analysedInstructions = recipe["analyzedInstructions"][0]["steps"]
-        instructions = formatSteps.formatSteps(analysedInstructions)
-        }
+        if (recipe["analyzedInstructions"] && (recipe["analyzedInstructions"].length > 0) && (recipe["analyzedInstructions"][0]["steps"].length > 0)) {
+        const analysedInstructions = recipe["analyzedInstructions"][0]["steps"];
+        const formattedInstructions = formatSteps.formatSteps(analysedInstructions);
+        instructions = formattedInstructions;        
+        } else {
+          instructions = []
+        }        
         
         const newRecipe = {
           apiId: recipe["id"],

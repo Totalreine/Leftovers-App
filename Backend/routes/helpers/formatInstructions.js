@@ -4,7 +4,6 @@ const formatInstructions = function (instructions) {
   console.log(instructions)
 
   for (const i of instructions) {
-    console.log(i)
     const divider = "   ";
     const number = i.number;
     const step = i.step;
