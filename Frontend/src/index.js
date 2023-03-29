@@ -12,8 +12,8 @@ import SignUp from './routes/SignUp'
 import LeftoversProvider from './providers/LeftoversProvider';
 import RecipesProvider from './providers/RecipesProvider';
 import UserRecipesProvider from './providers/UsersRecipesProvider';
-import IngredientsProvider from './providers/IngredientsProvider';
 import RecipeHistory from './routes/RecipeHistory';
+import FiltersProvider from './providers/FiltersProvider';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,13 +39,13 @@ root.render(
     <RecipesProvider>
       <LeftoversProvider>
         <UserRecipesProvider>
-          <IngredientsProvider>
+          <FiltersProvider>
             <RouterProvider router={router} />
-          </IngredientsProvider>
-        </UserRecipesProvider>
-      </LeftoversProvider>
-    </RecipesProvider>
-  </React.StrictMode>
+        </FiltersProvider>
+      </UserRecipesProvider>
+    </LeftoversProvider>
+  </RecipesProvider>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function

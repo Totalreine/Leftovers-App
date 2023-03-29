@@ -22,14 +22,12 @@ router.post("/signup", (req, res) => {
     password: hashedPassword,
   })
     .then((data) => {
-      res.redirect('/login');
+      console.log("data", data)
+      res.json("done")
     })
     .catch((err) => {
       console.log(err);
-      res.send(err);
     });
-    res.send(err);
-
 });
 
 router.post("/login", (req, res) => {

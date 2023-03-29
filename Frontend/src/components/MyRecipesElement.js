@@ -1,7 +1,6 @@
 import "./MyRecipesElement.css";
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { userRecipesContext } from "../providers/UsersRecipesProvider";
-import { ingredientsContext } from "../providers/IngredientsProvider";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,26 +12,43 @@ import Icon from '@mdi/react';
 import { mdiClose, mdiCircleSmall } from '@mdi/js';
 
 function MyRecipesElement(props) {
-  const { deleteUserRecipes } = useContext(userRecipesContext);
-  const { getIngredients, ingredients } = useContext(ingredientsContext);
+  const { deleteUserRecipes, userRecipes } = useContext(userRecipesContext);
+
+  console.log("props.recipe.instructions", props.recipe.instructions)
 
   let ingredientElements = [];
-  for (const ingredientElement in ingredients) {
-    const ingredient = ingredients[ingredientElement];
-    ingredientElements.push(<div><Icon path={mdiCircleSmall} size={1} /> {ingredient.name} ( {ingredient.amount} {ingredient.unit} )</div>);
+  for (const recipeElement of userRecipes) {
+    const ingredients = recipeElement.ingredients
+    for (const i of ingredients) {
+      ingredientElements.push(<div><Icon path={mdiCircleSmall} size={1} /> {i.name} ( {i.amount} {i.unit} )</div>);
+    }
   }
 
-  const instructionsSteps = props.recipe.instructions.split('   ');
   let instructionsElements = [];
-  for (let i = 1; i < instructionsSteps.length; i += 2) {
-    instructionsElements.push(
-      <div> <b>Step {instructionsSteps[i]}</b>: {instructionsSteps[i + 1]} </div>)
+  if (props.recipe.instructions && props.recipe.instructions.length > 0) {
+    const instructionsSteps = props.recipe.instructions.split('   ');
+    for (let i = 1; i < instructionsSteps.length; i += 2) {
+      instructionsElements.push(
+        <div> <b>Step {instructionsSteps[i]}</b>: {instructionsSteps[i + 1]} </div>)
+    }
   }
 
+  function SpecialTags() {
+    let tags = [];
+    for (const recipeElement of userRecipes) {
+      if (recipeElement.dairyFree) {
+        tags.push('Dairy Free 🐮')
+      } if (recipeElement.glutenFree) {
+        tags.push('Gluten Free 🍞')
+      } if (recipeElement.vegan) {
+        tags.push('Vegan 🥬')
+      } if (recipeElement.vegetarian) {
+        tags.push('Vegetarian 🥗')
+      }
+      return tags.map(tag => <h5> {tag} </h5>)
+    }
 
-  useEffect(() => {
-    getIngredients(props.recipe.id)
-  }, [])
+  }
 
   function RecipieToggle() {
     return (
@@ -52,8 +68,11 @@ function MyRecipesElement(props) {
         <Accordion.Collapse >
           <Container className="instructions" >
             <Row>
-              <Col>
+              <Col className="ingredientsCol">
                 {ingredientElements}
+              </Col>
+              <Col>
+                <SpecialTags />
               </Col>
             </Row>
             <Row>

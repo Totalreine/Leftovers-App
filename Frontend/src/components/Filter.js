@@ -38,24 +38,26 @@ const CustomMenu = React.forwardRef(
             <Row>
               <Col xs="auto">
                 <div>Diet:</div>
-                <Form.Check type={"checkbox"} label={"Vegan"}/>
-                <Form.Check type={"checkbox"} label={"Vegeterian"}/>
-                <Form.Check type={"checkbox"} label={"Keto"}/>
-                <Form.Check type={"checkbox"} label={"Paleo"}/>
+                <Form.Check type={"checkbox"} label={"Gluten Free"} value="gluten free"/>
+                <Form.Check type={"checkbox"} label={"Vegetarian"} value="vegetarian"/>
+                <Form.Check type={"checkbox"} label={"Vegan"} value="vegan"/>
+                <Form.Check type={"checkbox"} label={"Paleo"} value="paleo"/>
+                <Form.Check type={"checkbox"} label={"Ketogenic"} value="ketogenic"/>
               </Col>
               <Col xs="auto">
-                <div>Allergies:</div>
-                <Form.Check type={"checkbox"} label={"Nuts"}/>
-                <Form.Check type={"checkbox"} label={"Seafood"}/>
-                <Form.Check type={"checkbox"} label={"Dairy"}/>
-                <Form.Check type={"checkbox"} label={"Eggs"}/>
+                <div>Mealtype:</div>
+                <Form.Check type={"checkbox"} label={"Breakfast"} value="breakfast"/>
+                <Form.Check type={"checkbox"} label={"Main Course"} value="main course"/>
+                <Form.Check type={"checkbox"} label={"Side Dish"} value="side dish"/>
+                <Form.Check type={"checkbox"} label={"Snack"} value="snack"/>
+                <Form.Check type={"checkbox"} label={"Drink"} value="drink"/>
               </Col>
               <Col xs="auto">
-                <div>Macroc:</div>
-                <Form.Check type={"checkbox"} label={"High protein"}/>
-                <Form.Check type={"checkbox"} label={"Low carbs"}/>
-                <Form.Check type={"checkbox"} label={"Low fat"}/>
-                <Form.Check type={"checkbox"} label={"Low Sodium"}/>
+                <div>Intolerances:</div>
+                <Form.Check type={"checkbox"} label={"Gluten"} value="gluten"/>
+                <Form.Check type={"checkbox"} label={"Dairy"} value="dairy"/>
+                <Form.Check type={"checkbox"} label={"Peanut"} value="peanut"/>
+                <Form.Check type={"checkbox"} label={"Seafood"} value="seafood"/>
               </Col>
             </Row>
           </Container>
