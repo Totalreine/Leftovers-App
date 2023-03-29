@@ -48,8 +48,8 @@ app.use(authRoutes);
 app.use(recipeRoutes);
 app.use("/user", userRoutes);
 
-Ingredient.belongsToMany(Recipe, { through: recipe_ingredient });
-Recipe.belongsToMany(Ingredient, { through: recipe_ingredient });
+Ingredient.hasOne(Recipe, { through: recipe_ingredient, foreignKey: 'ingredient_id'});
+Recipe.belongsToMany(Ingredient, { through: recipe_ingredient, foreignKey: 'recipe_id'});
 User.belongsToMany(Recipe, { through: user_recipe });
 Recipe.belongsToMany(User, { through: user_recipe });
 

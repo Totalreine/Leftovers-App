@@ -10,7 +10,7 @@ const newRecipes = (ingredients, diet, mealtype, intolerances) => {
     fillIngredients: true,
     instructionsRequired: true,
     sort: "max-used-ingredients",
-    number: 3,
+    number: 30,
     diet: diet,
     type: mealtype,
     intolerances: intolerances

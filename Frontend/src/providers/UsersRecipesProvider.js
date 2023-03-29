@@ -8,33 +8,25 @@ export default function UserRecipesProvider(props) {
   const [userRecipes, setUserRecipes] = useState([]);
 
   function addUserRecipes(params) {
-    return axios.post(`/save`, params)
+    return axios.post(`/savedrecipes`, params)
       .then((all) => {
         setUserRecipes(() => all.data);
       });
   };
 
-  function getSavedRecipes(params) {
-    return axios.get(`/save`, { params })
+  function getSavedRecipes() {
+    return axios.get(`/savedrecipes`)
       .then((all) => {
+        console.log("all", all)
+        console.log("all.data", all.data)
         setUserRecipes(() => all.data);
       });
   }
 
   function deleteUserRecipes(recipeId) {
-    return axios.delete(`/save/${recipeId.id}`, recipeId)
-      .then(() => {
-        setUserRecipes(prev => {
-          let updatedState;
-          for (let i = 0; i <= prev.length; i++) {
-            if (i["id"] === recipeId.id) {
-              updatedState = userRecipes.splice(i, 1)
-            }
-          }
-          return updatedState;
-        });
-      })
-  }
+    return axios.delete(`/savedrecipes/${recipeId}`, { "id": recipeId })
+      .then(getSavedRecipes);
+  };
 
   const userRecipesData = { addUserRecipes, deleteUserRecipes, getSavedRecipes, userRecipes };
 

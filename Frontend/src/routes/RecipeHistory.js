@@ -21,7 +21,7 @@ function RecipeHistory() {
 
   useEffect(() => {
     getSavedRecipes()   
-  }, [userRecipes])
+  }, [])
   
   return (
     <div className="recipe-history-div">

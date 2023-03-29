@@ -28,7 +28,7 @@ function ReceiptCarousel(props) {
   };
 
   const onLikeClick = () => {
-    index && addUserRecipes(props.recipes[index])
+    addUserRecipes(props.recipes[index])
     ref.current.next();
   };
 

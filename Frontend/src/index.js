@@ -12,6 +12,7 @@ import SignUp from './routes/SignUp'
 import LeftoversProvider from './providers/LeftoversProvider';
 import RecipesProvider from './providers/RecipesProvider';
 import UserRecipesProvider from './providers/UsersRecipesProvider';
+import IngredientsProvider from './providers/IngredientsProvider';
 import RecipeHistory from './routes/RecipeHistory';
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "myrecipes",
-    element:<RecipeHistory/>
+    element: <RecipeHistory />
   },
   {
     path: "login",
@@ -36,11 +37,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RecipesProvider>
-    <LeftoversProvider>
-    <UserRecipesProvider>
-    <RouterProvider router={router} />
-    </UserRecipesProvider>
-    </LeftoversProvider>
+      <LeftoversProvider>
+        <UserRecipesProvider>
+          <IngredientsProvider>
+            <RouterProvider router={router} />
+          </IngredientsProvider>
+        </UserRecipesProvider>
+      </LeftoversProvider>
     </RecipesProvider>
   </React.StrictMode>
 );

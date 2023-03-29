@@ -21,7 +21,7 @@ router.get("/recipes", (req, res) => {
     });
 });
 
-router.post("/save", (req, res) => {
+router.post("/savedrecipes", (req, res) => {
   const {
     apiId,
     title,
@@ -37,11 +37,6 @@ router.post("/save", (req, res) => {
     instructions,
   } = req.body;
 
-  console.log("instructions", instructions)
-  console.log("body", req.body)
-
-
-
   const instructionsString = formatInstructions.formatInstructions(instructions);
 
   Recipe.create({
@@ -56,8 +51,10 @@ router.post("/save", (req, res) => {
     instructions: instructionsString
   })
     .then(() => {
-      Ingredient.bulkCreate(missedIngredients.concat(usedIngredients, unusedIngredients))
-      res.json("done")
+      return Ingredient.bulkCreate(missedIngredients.concat(usedIngredients, unusedIngredients))      
+    })
+    .then(() => {
+      res.json("done");
     })
     .catch((e) => {
       console.error(e);
@@ -65,10 +62,10 @@ router.post("/save", (req, res) => {
     });
 })
 
-router.get("/save", (req, res) => {
+router.get("/savedrecipes", (req, res) => {
   Recipe.findAll()
-    .then(() => {
-      res.json("user recipes")
+    .then((data) => {
+      res.json(data);
     })
     .catch((e) => {
       console.log(e);
@@ -76,18 +73,41 @@ router.get("/save", (req, res) => {
     })
 })
 
-router.delete("/save/:id", (req, res) => {
+router.get("/ingredients", (req, res) => {
   const {
     id
-  } = req.body;
+  } = req.query;
+
+  console.log(req.query)
+
+  Ingredient.findAll({
+    where: {
+      "recipe_id": id,
+    }
+  })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((e) => {
+      res.send(e);
+    })
+})
+
+router.delete("/savedrecipes/:id", (req, res) => {
+  const {
+    id
+  } = req.params;
+
+  console.log(req.params)
+  console.log(id)
 
   Recipe.destroy({
     where: {
-      id: id,
+      "id": id,
     }
   })
-    .then(() => {
-      res.json("deleted")
+    .then((data) => {
+      res.json(data);
     })
     .catch((e) => {
       console.log(e);
