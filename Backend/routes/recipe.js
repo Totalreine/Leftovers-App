@@ -1,5 +1,4 @@
 const express = require("express");
-const axios = require("axios");
 const router = express.Router();
 
 const spoonacularApi = require("./helpers/spoonacularAPI");
@@ -13,8 +12,7 @@ router.get("/recipes", (req, res) => {
       res.json(data);
     })
     .catch((e) => {
-      console.error(e);
-      res.send(e);
+      res.status(500);
     });
 });
 

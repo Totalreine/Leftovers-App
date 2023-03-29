@@ -22,6 +22,8 @@ function SignUpForm() {
       .post("http://localhost:8080/signup", data)
       .then(function (response) {
         console.log(response);
+
+        navigate("/login");
       })
       .catch((error) => {
         console.log(error);
@@ -75,7 +77,6 @@ function SignUpForm() {
         <Button variant="primary" id="form-btn" type="submit">
           <p>Sign Up</p>
         </Button>
-        <Link to="/login"></Link>
       </div>
       <div className="link-div">
         <Link to="/login" className="link">

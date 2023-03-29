@@ -3,9 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
 
-router.get("/", (req, res) => {
-  res.json("it works on main branch without cors and express.json");
-});
+router.get("/", (req, res) => {});
 
 router.get("/login", (req, res) => {});
 
@@ -21,10 +19,10 @@ router.post("/signup", (req, res) => {
     password: hashedPassword,
   })
     .then((data) => {
-      console.log(data);
+      res.status(201).json("it works");
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500);
     });
 });
 
@@ -41,16 +39,19 @@ router.post("/login", (req, res) => {
       if (user) {
         if (bcrypt.compareSync(password, user.dataValues.password)) {
           req.session.userID = user.dataValues.id;
-          res.json("user loggedin");
+          res.json({
+            userid: user.dataValues.id,
+            username: user.dataValues.name,
+          });
         } else {
-          res.json("wrong password");
+          res.status(401).json("wrong password");
         }
       } else {
-        res.json("wrong email or user not created");
+        res.status(401).json("wrong email or user not created");
       }
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500);
     });
 });
 
