@@ -11,6 +11,7 @@ import RecipesProvider from "./providers/RecipesProvider";
 import UserRecipesProvider from "./providers/UsersRecipesProvider";
 import RecipeHistory from "./routes/RecipeHistory";
 import AuthProvider from "./providers/AuthProvider";
+import FiltersProvider from "./providers/FiltersProvider";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
+      <FiltersProvider>
       <RecipesProvider>
         <LeftoversProvider>
           <UserRecipesProvider>
@@ -41,6 +43,7 @@ root.render(
           </UserRecipesProvider>
         </LeftoversProvider>
       </RecipesProvider>
+      </FiltersProvider>
     </AuthProvider>
   </React.StrictMode>
 );
