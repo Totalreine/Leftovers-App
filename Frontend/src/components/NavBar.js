@@ -21,7 +21,7 @@ function NavBar() {
               <Nav.Link href="myrecipes">My Recipes</Nav.Link>
             </Nav.Item>
             <Nav.Item className="navLinks">
-              <Nav.Link href="shoppingList">My Shopping List</Nav.Link>
+              <Nav.Link href="shoppinglist">My Shopping List</Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

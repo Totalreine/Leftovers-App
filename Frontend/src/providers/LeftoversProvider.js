@@ -21,6 +21,7 @@ export default function LeftoversProvider(props) {
     let updatedState = {...leftovers};
     delete updatedState[leftover];
     setLeftovers(updatedState);
+    localStorage.setItem('leftovers', JSON.stringify(updatedState));
   };
 
   const leftoversData = { addLeftover, deleteLeftover, leftovers };

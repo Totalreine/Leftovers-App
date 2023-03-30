@@ -14,17 +14,23 @@ function SideBar() {
   const [leftover, setLeftover] = useState("");
   const { addLeftover, leftovers } = useContext(leftoversContext);
 
-  const onSubmit = function(event) {
+  const onSubmit = function (event) {
     event.preventDefault();
     leftover && addLeftover(leftover);
     setLeftover("");
+    let existing = localStorage.getItem('leftovers');
+    existing = existing ? JSON.parse(existing) : {};
+    existing[leftover] = leftover;
+    localStorage.setItem('leftovers', JSON.stringify(existing));
   }
 
-  let leftoverElements = [];
-  for (let leftoverElement in leftovers) {
-    const leftover = leftovers[leftoverElement];
-    leftoverElements.push(<LeftoverElement key={leftover} leftover={leftover} />);
-  }
+    let leftoverElements = [];
+    const storedLeftovers = localStorage.getItem('leftovers')
+    console.log("Object.keys(JSON.parse(storedLeftovers)", Object.keys(JSON.parse(storedLeftovers)))
+    leftoverElements.push(
+      <p>
+    <LeftoverElement key={leftover} leftover={Object.keys(JSON.parse(storedLeftovers))} />
+    </p>);
 
 
   return (
@@ -32,11 +38,11 @@ function SideBar() {
       <div className="myLeftovers element">
         <span className="dot"></span>
         <span className="category">My Leftovers</span>
-        <Icon path={mdiPlus} size={1.3} className="plusSign" 
-        role="button"
-        onClick={() => setOpen(!open)}
-        aria-controls="collapse-form"
-        aria-expanded={open}/>
+        <Icon path={mdiPlus} size={1.3} className="plusSign"
+          role="button"
+          onClick={() => setOpen(!open)}
+          aria-controls="collapse-form"
+          aria-expanded={open} />
       </div>
       <Collapse in={open}>
         <div className="newItem" id="collapse-form">
@@ -50,11 +56,11 @@ function SideBar() {
               onChange={event => setLeftover(event.target.value)}
             />
           </form>
-          <Icon path={mdiCheck} size={1} onClick={onSubmit}/>
+          <Icon path={mdiCheck} size={1} onClick={onSubmit} />
         </div>
       </Collapse>
       <ul className="leftoversList">
-        { leftoverElements }
+        {leftoverElements}
       </ul>
     </div>
   );

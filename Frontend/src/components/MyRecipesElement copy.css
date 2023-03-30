@@ -22,25 +22,14 @@
   --bs-gutter-y: 0;
 }
 
+
 .instructions {
   background-color: #ffff;
-  padding-top: 3vh;
 }
 
-.recipeToggle {
-  display: flex;
-  align-items: center;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
-  background-color: #ffff;
-}
-
-.deleteReceipt {
-  margin-right: 5vh;
-}
-
-.ingredientsCol {
-  padding-bottom: 4vh;
+.cart-btn {
+  background: transparent;
+  border: none;
 }
 
 ol {
@@ -75,4 +64,30 @@ a {
 #cart-icon:hover {
   color: #9E9BF2;
   visibility: visible;
+}
+
+.collapsed-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+ol {
+  padding-left: 1rem;
+}
+
+.instructions{
+   padding-left: 1rem;
+}
+
+.recipeToggle {
+  display: flex;
+  align-items: center;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  background-color: #ffff;
+}
+
+.deleteReceipt {
+  margin-right: 5vh;
 }

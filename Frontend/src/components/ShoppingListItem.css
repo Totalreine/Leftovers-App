@@ -1,0 +1,42 @@
+.list-group-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom-color: #F2E088;
+  border-width: medium;
+}
+.list-group-item:hover{
+  border-bottom-color:#9E9BF2; 
+}
+.fa-x:hover{
+  color: red;
+}
+
+
+.checkbox-item-div{
+  display: flex;
+}
+
+#shopping-item{
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+
+input[type="checkbox"] {
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background-color: red;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}

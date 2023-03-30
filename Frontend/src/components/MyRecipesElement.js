@@ -14,13 +14,27 @@ import { mdiClose, mdiCircleSmall } from '@mdi/js';
 function MyRecipesElement(props) {
   const { deleteUserRecipes, userRecipes } = useContext(userRecipesContext);
 
+  const addToShoppingList = function(name) {
+    let existing = localStorage.getItem('shoppingList');
+    existing = existing ? JSON.parse(existing) : [];
+    existing.push(name)
+    localStorage.setItem('shoppingList', JSON.stringify(existing));
+  }
+
   let ingredientElements = [];
   for (const recipeElement of userRecipes) {
     const ingredients = recipeElement.ingredients
     for (const i of ingredients) {
-      if (i.recipeId = props.recipe.recipeId) {
-        ingredientElements.push(<div><Icon path={mdiCircleSmall} size={1} /> {i.name} ( {i.amount} {i.unit} )</div>);
-      }
+      // if (i.recipeId = props.recipe.recipeId) {
+        ingredientElements.push(
+        <div className="show-on-hover" onClick={() => addToShoppingList(i.name)}>
+          <a className="cart-link">
+            <i id="cart-icon"className="fa-solid fa-cart-shopping"></i>
+              </a>
+              <span className="ingredient"> {i.name} ( {i.amount} {i.unit} )</span>
+              </div>
+              );
+      // }
     }
   }
 

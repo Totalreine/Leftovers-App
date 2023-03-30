@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import Login from "./routes/Login";
 import Home from "./routes/home";
 import SignUp from "./routes/SignUp";
+import ShoppingList from "./routes/ShoppingList";
 import LeftoversProvider from "./providers/LeftoversProvider";
 import RecipesProvider from "./providers/RecipesProvider";
 import UserRecipesProvider from "./providers/UsersRecipesProvider";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "shoppinglist",
+    element: <ShoppingList />,
   },
 ]);
 

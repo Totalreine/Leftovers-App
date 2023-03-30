@@ -52,8 +52,10 @@
 }
 
 .leftoversList{
+  display: flex;
   margin-top: 3vh;
   padding-left: 0;
+  flex-direction: column;
 }
 
 .leftoverListItem {
@@ -61,6 +63,7 @@
   margin-inline: auto;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
 
 .delete {
@@ -107,4 +110,8 @@ input:focus {
 
 .sideBarCategory {
   padding-right: 6vh;
+}
+
+.leftoverLine {
+  display:flex;
 }
