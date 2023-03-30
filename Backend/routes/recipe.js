@@ -20,77 +20,55 @@ router.get("/recipes", (req, res) => {
     });
 });
 
-router.post("/savedrecipes", (req, res) => {
-  const {
-    apiId,
-    title,
-    readyInMinutes,
-    image,
-    vegetarian,
-    vegan,
-    glutenFree,
-    dairyFree,
-    missedIngredients,
-    usedIngredients,
-    unusedIngredients,
-    instructions,
-  } = req.body;
-  console.log("body", req.body);
-  const instructionsString =
-    formatInstructions.formatInstructions(instructions);
+router.post("/savedrecipes", async (req, res) => {
+  try {
+    const {
+      apiId,
+      title,
+      readyInMinutes,
+      image,
+      vegetarian,
+      vegan,
+      glutenFree,
+      dairyFree,
+      missedIngredients,
+      usedIngredients,
+      unusedIngredients,
+      instructions,
+    } = req.body;
 
-  const recipe = Recipe.create({
-    title,
-    vegan,
-    glutenFree,
-    dairyFree,
-    vegetarian,
-    readyInMinutes,
-    image,
-    instructions: instructionsString,
-    apiId,
-  })
-    .then(() => {
-      console.log("recipe", recipe);
-      return Ingredient.bulkCreate(
-        missedIngredients.concat(usedIngredients, unusedIngredients)
-      );
+    const instructionsString = formatInstructions.formatInstructions(instructions);
+
+    const recipe = await Recipe.create({
+      apiId,
+      title,
+      readyInMinutes,
+      image,
+      vegetarian,
+      vegan,
+      glutenFree,
+      dairyFree,
+      instructions: instructionsString
     })
-    .then((data) => {
-      recipe.addIngredient(data);
-      res.json("done");
-    })
-    .catch((e) => {
-      console.error(e);
-      res.send(e);
-    });
-});
+
+    const ingredients = await Ingredient.bulkCreate(missedIngredients.concat(usedIngredients, unusedIngredients))
+
+    await recipe.addIngredients(ingredients);
+    res.json("done");
+
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+})
 
 router.get("/savedrecipes", (req, res) => {
-  Recipe.findAll()
+  Recipe.findAll({include: Ingredient})
     .then((data) => {
       res.json(data);
     })
     .catch((e) => {
       console.log(e);
-      res.send(e);
-    });
-});
-
-router.get("/ingredients", (req, res) => {
-  const { id } = req.query;
-
-  console.log(req.query);
-
-  Ingredient.findAll({
-    where: {
-      recipe_id: id,
-    },
-  })
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((e) => {
       res.send(e);
     });
 });

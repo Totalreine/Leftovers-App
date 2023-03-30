@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import "./Filter.css"
 
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -8,6 +8,8 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+import { filtersContext } from '../providers/FiltersProvider';
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <div>
@@ -24,7 +26,44 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 const CustomMenu = React.forwardRef(
   ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
+    const [diet, setDiet] = useState("");
+    const [mealtype, setMealtype] = useState("");
+    const [intolerance, setIntolerances] = useState("");
+    const { addDiet, deleteDiet, addMealtype,  deleteMealtype, addIntolerances, deleteIntolerances, diets, mealtypes, intolerances } = useContext(filtersContext);
+
+    console.log("diets", diets)
+    console.log("Object.values(diets)", Object.values(diets))
+
+    function handleDietClick(event) {
+      if (Object.values(diets) > 0 && Object.values(diets).icludes(event.target.value)) {
+        deleteDiet(event.target.value);
+        setDiet("");
+      } else {
+        addDiet(event.target.value);
+        setDiet(event.target.value);
+      }
+    }
+
+    function handleMealClick(event) {
+      if (Object.values(mealtypes) > 0 && Object.values(mealtypes).icludes(event.target.value)) {
+        deleteMealtype(event.target.value);
+        setMealtype("");
+      } else {
+        addMealtype(event.target.value);
+        setMealtype(event.target.value);
+      }
+    }
+
+    function handleIntoleranceClick(event) {
+      if (Object.values(intolerances) > 0 && Object.values(intolerances).icludes(event.target.value)) {
+        deleteIntolerances(event.target.value);
+        setIntolerances("");
+      } else {
+        addIntolerances(event.target.value);
+        setIntolerances(event.target.value);
+      }
+    }
 
     return (
       <div
@@ -38,24 +77,26 @@ const CustomMenu = React.forwardRef(
             <Row>
               <Col xs="auto">
                 <div>Diet:</div>
-                <Form.Check type={"checkbox"} label={"Vegan"}/>
-                <Form.Check type={"checkbox"} label={"Vegeterian"}/>
-                <Form.Check type={"checkbox"} label={"Keto"}/>
-                <Form.Check type={"checkbox"} label={"Paleo"}/>
+                <Form.Check type={"checkbox"} label={"Gluten Free"} value="gluten free" onClick={handleDietClick}/>
+                <Form.Check type={"checkbox"} label={"Vegetarian"} value="vegetarian" onClick={handleDietClick}/>
+                <Form.Check type={"checkbox"} label={"Vegan"} value="vegan" onClick={handleDietClick}/>
+                <Form.Check type={"checkbox"} label={"Paleo"} value="paleo" onClick={handleDietClick}/>
+                <Form.Check type={"checkbox"} label={"Ketogenic"} value="ketogenic" onClick={handleDietClick}/>
               </Col>
               <Col xs="auto">
-                <div>Allergies:</div>
-                <Form.Check type={"checkbox"} label={"Nuts"}/>
-                <Form.Check type={"checkbox"} label={"Seafood"}/>
-                <Form.Check type={"checkbox"} label={"Dairy"}/>
-                <Form.Check type={"checkbox"} label={"Eggs"}/>
+                <div>Mealtype:</div>
+                <Form.Check type={"checkbox"} label={"Breakfast"} value="breakfast" onClick={handleMealClick}/>
+                <Form.Check type={"checkbox"} label={"Main Course"} value="main course" onClick={handleMealClick}/>
+                <Form.Check type={"checkbox"} label={"Side Dish"} value="side dish" onClick={handleMealClick}/>
+                <Form.Check type={"checkbox"} label={"Snack"} value="snack" onClick={handleMealClick}/>
+                <Form.Check type={"checkbox"} label={"Drink"} value="drink" onClick={handleMealClick}/>
               </Col>
               <Col xs="auto">
-                <div>Macroc:</div>
-                <Form.Check type={"checkbox"} label={"High protein"}/>
-                <Form.Check type={"checkbox"} label={"Low carbs"}/>
-                <Form.Check type={"checkbox"} label={"Low fat"}/>
-                <Form.Check type={"checkbox"} label={"Low Sodium"}/>
+                <div>Intolerances:</div>
+                <Form.Check type={"checkbox"} label={"Gluten"} value="gluten" onClick={handleIntoleranceClick}/>
+                <Form.Check type={"checkbox"} label={"Dairy"} value="dairy" onClick={handleIntoleranceClick}/>
+                <Form.Check type={"checkbox"} label={"Peanut"} value="peanut" onClick={handleIntoleranceClick}/>
+                <Form.Check type={"checkbox"} label={"Seafood"} value="seafood" onClick={handleIntoleranceClick}/>
               </Col>
             </Row>
           </Container>

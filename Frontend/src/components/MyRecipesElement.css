@@ -24,6 +24,7 @@
 
 .instructions {
   background-color: #ffff;
+  padding-top: 3vh;
 }
 
 .recipeToggle {
@@ -36,4 +37,8 @@
 
 .deleteReceipt {
   margin-right: 5vh;
+}
+
+.ingredientsCol {
+  padding-bottom: 4vh;
 }
