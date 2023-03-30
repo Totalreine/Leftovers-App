@@ -7,3 +7,20 @@
 .filterIcon:hover {
   color: #F27E63;
 }
+
+.form-check-input:checked[type=checkbox] {
+  background-image: none;
+}
+
+.form-check-input:checked {
+  background-color: #F24405;
+  border-color: #F24405;
+}
+
+.form-check-input[type=checkbox] {
+  border-radius: 0
+}
+
+.form-check-input:checked[type=checkbox] + label {
+  font-weight: 600;
+}
