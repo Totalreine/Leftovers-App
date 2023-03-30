@@ -19,16 +19,19 @@ function ReceiptCarousel(props) {
   const [index, setIndex] = useState(0);
   const { addUserRecipes } = useContext(userRecipesContext);
 
+  const currentRecipe = props.recipes[index];
+
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
 
   const onRejectClick = () => {
-    ref.current.prev();
+    addUserRecipes({...currentRecipe, "accepted": false} )
+    ref.current.next();
   };
 
   const onLikeClick = () => {
-    addUserRecipes(props.recipes[index])
+    addUserRecipes({...currentRecipe, "accepted": true} )
     ref.current.next();
   };
 

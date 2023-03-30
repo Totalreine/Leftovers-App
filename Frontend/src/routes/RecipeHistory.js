@@ -16,6 +16,8 @@ function RecipeHistory() {
   let recipesElements = [];
   for (let recipeElement in userRecipes) {
     const recipe = userRecipes[recipeElement];
+    console.log("recipeElement", recipeElement)
+    console.log("recipe", recipe)
     recipesElements.push(<MyRecipesElement key={recipe.id} recipe={recipe} />);
   }
 

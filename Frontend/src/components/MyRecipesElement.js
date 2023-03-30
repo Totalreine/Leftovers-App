@@ -14,13 +14,13 @@ import { mdiClose, mdiCircleSmall } from '@mdi/js';
 function MyRecipesElement(props) {
   const { deleteUserRecipes, userRecipes } = useContext(userRecipesContext);
 
-  console.log("props.recipe.instructions", props.recipe.instructions)
-
   let ingredientElements = [];
   for (const recipeElement of userRecipes) {
     const ingredients = recipeElement.ingredients
     for (const i of ingredients) {
-      ingredientElements.push(<div><Icon path={mdiCircleSmall} size={1} /> {i.name} ( {i.amount} {i.unit} )</div>);
+      if (i.recipeId = props.recipe.recipeId) {
+        ingredientElements.push(<div><Icon path={mdiCircleSmall} size={1} /> {i.name} ( {i.amount} {i.unit} )</div>);
+      }
     }
   }
 

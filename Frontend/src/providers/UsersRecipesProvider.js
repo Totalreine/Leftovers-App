@@ -18,21 +18,34 @@ export default function UserRecipesProvider(props) {
     return axios.get(`/savedrecipes`)
       .then((all) => {
         console.log("all", all)
-        console.log("all.data", all.data)
-        setUserRecipes(() => all.data);
-      });
-  }
+        const data = all.data;
+        console.log("data", data)
+        const recipes = data.recipes;
+        const filterRecipes = function (recipes) {
+          let likedrecipe = [];
+          for (const res of recipes) {
+            if (res.accepted) {
+              likedrecipe.push(res);
+            }
+          }
+          return likedrecipe;
+        };
+        const acceptedRecipes = filterRecipes(recipes)
+        console.log("acceptedRecipes", acceptedRecipes)
+    setUserRecipes(() => acceptedRecipes);
+  });
+}
 
-  function deleteUserRecipes(recipeId) {
-    return axios.delete(`/savedrecipes/${recipeId}`, { "id": recipeId })
-      .then(getSavedRecipes);
-  };
+function deleteUserRecipes(recipeId) {
+  return axios.delete(`/savedrecipes/${recipeId}`, { "id": recipeId })
+    .then(getSavedRecipes);
+};
 
-  const userRecipesData = { addUserRecipes, deleteUserRecipes, getSavedRecipes, userRecipes };
+const userRecipesData = { addUserRecipes, deleteUserRecipes, getSavedRecipes, userRecipes };
 
-  return (
-    <userRecipesContext.Provider value={userRecipesData}>
-      {props.children}
-    </userRecipesContext.Provider>
-  );
+return (
+  <userRecipesContext.Provider value={userRecipesData}>
+    {props.children}
+  </userRecipesContext.Provider>
+);
 };

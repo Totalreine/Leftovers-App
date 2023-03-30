@@ -21,7 +21,7 @@ main {
   flex-direction: row;
   color: #4E4E4E;
   background-color: #E8E8E8;
-  height: inherit;
+  min-height: 100vh;
 }
 
 .carousel {

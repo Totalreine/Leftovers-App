@@ -5,6 +5,7 @@ import axios from "axios";
 export const recipesContext = createContext();
 
 axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.withCredentials = true;
 
 // Create a Component wrapper from Context.Provider
 export default function RecipesProvider(props) {
