@@ -47,6 +47,9 @@ const Recipe = sequelize.define(
       type: Sequelize.TEXT,
       allowNull: false,
     },
+    accepted: {
+      type: Sequelize.BOOLEAN,
+    },
   },
   {
     timestamps: false,

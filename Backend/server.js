@@ -5,11 +5,11 @@ const sequelize = require("./util/dbConnection");
 const Recipe = require("./models/recipes");
 const User = require("./models/users");
 const Ingredient = require("./models/ingredients");
-const user_recipe = require("./models/user_recipe");
 
 const PORT = process.env.DB_PORT || 8080;
 const app = express();
 
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
@@ -20,7 +20,8 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type , Accept, Authorization"
@@ -40,10 +41,14 @@ app.use(authRoutes);
 app.use(recipeRoutes);
 app.use("/user", userRoutes);
 
-Recipe.hasMany(Ingredient);
+Recipe.hasMany(Ingredient, {
+  onDelete: "CASCADE"
+});
 
-User.belongsToMany(Recipe, { through: 'UserRecipes' });
-Recipe.belongsToMany(User, { through: 'UserRecipes' });
+const User_Recipe = sequelize.define('User_Recipe', {}, { timestamps: false });
+
+User.belongsToMany(Recipe, { through: User_Recipe });
+Recipe.belongsToMany(User, { through: User_Recipe });
 
 sequelize
   .sync()
