@@ -24,13 +24,20 @@ function SideBar() {
     localStorage.setItem('leftovers', JSON.stringify(existing));
   }
 
+  const listLeftovers = function () {
     let leftoverElements = [];
     const storedLeftovers = localStorage.getItem('leftovers')
-    console.log("Object.keys(JSON.parse(storedLeftovers)", Object.keys(JSON.parse(storedLeftovers)))
-    leftoverElements.push(
-      <p>
-    <LeftoverElement key={leftover} leftover={Object.keys(JSON.parse(storedLeftovers))} />
-    </p>);
+    console.log("storedLeftovers", storedLeftovers)
+    if (storedLeftovers) {
+      leftoverElements.push(
+        <p>
+          <LeftoverElement key={leftover} leftover={Object.keys(JSON.parse(storedLeftovers))} />
+        </p>);
+    }
+    return leftoverElements;
+  }
+
+  console.log(listLeftovers)
 
 
   return (
@@ -60,7 +67,7 @@ function SideBar() {
         </div>
       </Collapse>
       <ul className="leftoversList">
-        {leftoverElements}
+        {listLeftovers()}
       </ul>
     </div>
   );
